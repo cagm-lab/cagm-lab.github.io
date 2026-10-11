@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prevalencia de fístula obstétrica en África subsahariana · Dashboard</title>
+<meta name="description" content="Dashboard interactivo con la prevalencia estimada de fístula obstétrica en 19 países de África subsahariana.">
+<style>
+  html,body{margin:0;padding:0}
+  body{background:#ffffff}
+  @media (prefers-color-scheme:dark){body{background:#12161c}}
+  .fo-back{display:block;max-width:1200px;margin:0 auto;padding:16px 16px 0;box-sizing:border-box;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:.85rem}
+  .fo-back a{color:#2a6f97;text-decoration:none}
+  .fo-back a:hover{text-decoration:underline}
+  @media (prefers-color-scheme:dark){.fo-back a{color:#5fa8d3}}
+</style>
+</head>
+<body>
+<nav class="fo-back"><a href="index.html">← Volver al portafolio</a></nav>
+<!-- =====================================================================
+     DASHBOARD: Prevalencia estimada de fístula obstétrica
+     en 19 países de África subsahariana
+     Pegue TODO este bloque dentro del <body> de su index.html,
+     en el lugar donde quiera que aparezca.
+     Todo el CSS está limitado a .fo-embed para no afectar su sitio.
+     Fuente: Maheu-Giroux M. et al. The Lancet Global Health, 2015; 3: e271–78.
+     ===================================================================== -->
+<section class="fo-embed" id="dashboard-fistula">
+<style>
+.fo-embed{
+  --fo-bg:#ffffff; --fo-panel:#f7f8fa; --fo-fg:#1b2430; --fo-muted:#5c6773;
+  --fo-line:#e3e6ea; --fo-grid:#eceef1; --fo-ref:#8a94a0;
+  --fo-c1:#2a6f97; --fo-c2:#4c956c; --fo-c3:#c8553d; --fo-bad:#c0392b;
+  --fo-radius:10px;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color:var(--fo-fg); background:var(--fo-bg);
+  max-width:1200px; margin:0 auto; padding:24px 16px; box-sizing:border-box;
+}
+@media (prefers-color-scheme:dark){
+  .fo-embed{ --fo-bg:#12161c; --fo-panel:#1a2029; --fo-fg:#e8ecf1; --fo-muted:#9aa5b1;
+    --fo-line:#2b3440; --fo-grid:#232b36; --fo-ref:#7d8894; --fo-c1:#5fa8d3; --fo-c2:#74c69d; --fo-c3:#e07a5f; }
+}
+.fo-embed *,.fo-embed *::before,.fo-embed *::after{box-sizing:border-box}
+.fo-embed h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(1.4rem,3vw,2rem);line-height:1.2;margin:0 0 8px;max-width:48rem}
+.fo-embed .fo-lede{color:var(--fo-muted);font-size:1rem;line-height:1.5;margin:0 0 24px;max-width:46rem}
+.fo-embed .fo-lede b{color:var(--fo-fg);font-weight:600}
+.fo-embed .fo-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12.5rem),1fr));gap:16px;margin-bottom:24px}
+.fo-embed .fo-card{position:relative;background:var(--fo-panel);border:1px solid var(--fo-line);border-radius:var(--fo-radius);padding:20px;min-width:0}
+.fo-embed .fo-kpi-label{font-size:.8rem;color:var(--fo-muted)}
+.fo-embed .fo-kpi-val{font-family:Georgia,"Times New Roman",serif;font-size:2.2rem;line-height:1.1;margin:8px 0 4px;font-variant-numeric:tabular-nums}
+.fo-embed .fo-kpi-sub{font-size:.8rem;color:var(--fo-muted);font-variant-numeric:tabular-nums}
+.fo-embed .fo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,26rem),1fr));gap:16px;margin-bottom:24px}
+.fo-embed h2{font-size:1.05rem;font-weight:600;margin:0 0 4px}
+.fo-embed h3{font-size:.95rem;font-weight:600;margin:0 0 10px}
+.fo-embed .fo-note{font-size:.8rem;color:var(--fo-muted);margin:0 0 14px;line-height:1.45}
+.fo-embed .fo-toggle{display:inline-flex;border:1px solid var(--fo-line);border-radius:var(--fo-radius);overflow:hidden;margin-bottom:12px}
+.fo-embed .fo-toggle button{font:inherit;font-size:.8rem;padding:6px 14px;border:0;background:transparent;color:var(--fo-muted);cursor:pointer}
+.fo-embed .fo-toggle button[aria-pressed="true"]{background:var(--fo-fg);color:var(--fo-bg)}
+.fo-embed .fo-toggle button:focus-visible,.fo-embed th button:focus-visible{outline:2px solid var(--fo-c1);outline-offset:-2px}
+.fo-embed .fo-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.8rem;color:var(--fo-muted);margin-bottom:8px}
+.fo-embed .fo-legend span{display:inline-flex;align-items:center;gap:6px}
+.fo-embed .fo-sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.fo-embed .fo-sw-line{width:16px;height:0;border-top:2px dashed var(--fo-ref);display:inline-block}
+.fo-embed .fo-chart{min-height:540px}
+.fo-embed .fo-tick{fill:var(--fo-muted);font-size:12px;font-family:inherit;font-variant-numeric:tabular-nums}
+.fo-embed .fo-label{fill:var(--fo-fg)}
+.fo-embed .fo-tip{position:absolute;display:none;z-index:5;background:var(--fo-bg);border:1px solid var(--fo-line);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.15);padding:6px 10px;font-size:.78rem;pointer-events:none;max-width:16rem;font-variant-numeric:tabular-nums}
+.fo-embed .fo-tip-h{color:var(--fo-muted);margin-bottom:2px}
+.fo-embed .fo-findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:24px}
+.fo-embed .fo-hrow{margin-bottom:10px}
+.fo-embed .fo-hrow-top{display:flex;justify-content:space-between;gap:8px;font-size:.8rem;margin-bottom:3px}
+.fo-embed .fo-hrow-top .v{font-variant-numeric:tabular-nums}
+.fo-embed .fo-hbar{height:8px;border-radius:4px;background:var(--fo-grid);overflow:hidden}
+.fo-embed .fo-hbar>div{height:100%;border-radius:4px}
+.fo-embed .fo-tablewrap{max-height:32rem;overflow:auto}
+.fo-embed table{width:100%;border-collapse:collapse;font-size:.8rem;font-variant-numeric:tabular-nums}
+.fo-embed th{position:sticky;top:0;background:var(--fo-panel);text-align:right;font-weight:600;color:var(--fo-muted);border-bottom:1px solid var(--fo-line);padding:0;white-space:nowrap}
+.fo-embed th button{font:inherit;color:inherit;background:none;border:0;padding:6px 10px;cursor:pointer;width:100%;text-align:inherit}
+.fo-embed th:nth-child(-n+2),.fo-embed td:nth-child(-n+2){text-align:left}
+.fo-embed td{text-align:right;padding:6px 10px;border-bottom:1px solid var(--fo-line);white-space:nowrap}
+.fo-embed .fo-search{font:inherit;font-size:.8rem;padding:6px 10px;border:1px solid var(--fo-line);border-radius:8px;background:var(--fo-bg);color:var(--fo-fg);margin-bottom:10px;width:min(100%,16rem)}
+.fo-embed .fo-method p{font-size:.8rem;color:var(--fo-muted);line-height:1.55;margin:0 0 8px;max-width:60rem}
+.fo-embed .fo-fail{display:flex;align-items:center;justify-content:center;gap:6px;color:var(--fo-muted);font-size:.8rem;min-height:200px}
+.fo-embed .fo-fail i{width:6px;height:6px;border-radius:50%;background:var(--fo-bad);display:inline-block}
+</style>
+
+  <header>
+    <h1>Prevalencia estimada de fístula obstétrica en 19 países de África subsahariana</h1>
+    <p class="fo-lede">
+      <b data-fo="maxPrevPais">—</b> registra la mayor prevalencia de vida
+      (<b data-fo="maxPrevVal">—</b> por cada 1.000 mujeres), pero
+      <b data-fo="maxCargaPais">—</b> concentra el mayor número de mujeres que hoy viven con síntomas
+      (<b data-fo="maxCargaVal">—</b>).
+    </p>
+  </header>
+
+  <div class="fo-kpis">
+    <div class="fo-card">
+      <div class="fo-kpi-label">Prevalencia de vida en la región</div>
+      <div class="fo-kpi-val" data-fo="k-prev_vida">—</div>
+      <div class="fo-kpi-sub">por 1.000 mujeres de 15 a 49 años · IC 95 % <span data-fo="k-prev_vida-ic">—</span></div>
+    </div>
+    <div class="fo-card">
+      <div class="fo-kpi-label">Prevalencia actual en la región</div>
+      <div class="fo-kpi-val" data-fo="k-prev_actual">—</div>
+      <div class="fo-kpi-sub">por 1.000 mujeres con síntomas hoy · IC 95 % <span data-fo="k-prev_actual-ic">—</span></div>
+    </div>
+    <div class="fo-card">
+      <div class="fo-kpi-label">Mujeres con síntomas actuales</div>
+      <div class="fo-kpi-val" data-fo="k-carga">—</div>
+      <div class="fo-kpi-sub">suma de las estimaciones de los 19 países</div>
+    </div>
+    <div class="fo-card">
+      <div class="fo-kpi-label">Mujeres entrevistadas</div>
+      <div class="fo-kpi-val" data-fo="k-encuestadas">—</div>
+      <div class="fo-kpi-sub">encuestas nacionales DHS y MICS</div>
+    </div>
+  </div>
+
+  <div class="fo-grid">
+    <div class="fo-card" data-fo-card="prev">
+      <h2>Prevalencia por país</h2>
+      <p class="fo-note">Casos por cada 1.000 mujeres de 15 a 49 años. El punto es la estimación central y la barra, el intervalo de credibilidad del 95 %.</p>
+      <div class="fo-toggle" role="group" aria-label="Tipo de prevalencia">
+        <button type="button" data-mode="vida" aria-pressed="true">De vida</button>
+        <button type="button" data-mode="actual" aria-pressed="false">Actual</button>
+      </div>
+      <div class="fo-legend"><span><i class="fo-sw-line"></i>Estimación regional</span></div>
+      <div class="fo-chart" data-fo-chart="prev"></div>
+      <div class="fo-tip"></div>
+    </div>
+    <div class="fo-card" data-fo-card="carga">
+      <h2>Número estimado de mujeres afectadas</h2>
+      <p class="fo-note">Mujeres de 15 a 49 años, según la población femenina de cada país en 2010. La línea fina marca el intervalo de credibilidad de los síntomas actuales.</p>
+      <div class="fo-legend">
+        <span><i class="fo-sw" style="background:var(--fo-c1);opacity:.28"></i>Alguna vez</span>
+        <span><i class="fo-sw" style="background:var(--fo-c1)"></i>Con síntomas hoy</span>
+      </div>
+      <div class="fo-chart" data-fo-chart="carga"></div>
+      <div class="fo-tip"></div>
+    </div>
+  </div>
+
+  <div class="fo-card" style="margin-bottom:24px">
+    <h2>Causas, tratamiento y barreras</h2>
+    <p class="fo-note">Estimaciones agregadas de la región entre las mujeres que declararon síntomas.</p>
+    <div class="fo-findings" data-fo-chart="hallazgos"></div>
+  </div>
+
+  <div class="fo-card" style="margin-bottom:24px">
+    <h2>Datos por país</h2>
+    <p class="fo-note">Prevalencias por cada 1.000 mujeres. Haga clic en un encabezado para ordenar.</p>
+    <input class="fo-search" type="search" placeholder="Buscar país o encuesta" aria-label="Buscar país o encuesta">
+    <div class="fo-tablewrap">
+      <table>
+        <thead><tr>
+          <th><button type="button" data-k="pais">País</button></th>
+          <th><button type="button" data-k="encuesta">Encuesta</button></th>
+          <th><button type="button" data-k="prev_vida">Prev. de vida</button></th>
+          <th><button type="button" data-k="prev_actual">Prev. actual</button></th>
+          <th><button type="button" data-k="imputada">Actual imputada</button></th>
+          <th><button type="button" data-k="mujeres_alguna_vez">Mujeres alguna vez</button></th>
+          <th><button type="button" data-k="mujeres_actual">Mujeres hoy</button></th>
+          <th><button type="button" data-k="entrevistadas">Entrevistadas</button></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="fo-card fo-method">
+    <h2>Cómo se calcularon estas cifras</h2>
+    <p>Fuente: Maheu-Giroux M., Filippi V., Samadoulougou S. et al. «Prevalence of symptoms of vaginal fistula in 19 sub-Saharan Africa countries: a meta-analysis of national household survey data». <i>The Lancet Global Health</i>, 2015; 3: e271–78. El estudio combinó las encuestas DHS y MICS más recientes de cada país mediante un metaanálisis bayesiano jerárquico que corrige la imprecisión de las preguntas autodeclaradas.</p>
+    <p>La prevalencia de vida cuenta a las mujeres que alguna vez tuvieron pérdida constante de orina o heces por la vagina. La prevalencia actual excluye a quienes se trataron y quedaron sin síntomas; en cinco encuestas sin datos sobre el resultado del tratamiento, ese dato se imputó con la tasa media de éxito de la región.</p>
+    <p>La suma de mujeres con síntomas actuales es una aproximación a partir de las medianas por país; el estudio no publica un total regional con su propio intervalo.</p>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+(function () {
+  var root = document.getElementById("dashboard-fistula");
+  if (!root) return;
+  if (!window.d3) {
+    root.querySelectorAll("[data-fo-chart]").forEach(function (b) {
+      b.innerHTML = '<div class="fo-fail"><i></i>No se pudo cargar la librería de gráficos</div>';
+    });
+    return;
+  }
+
+  /* ---------- DATOS ---------- */
+  var cols = ["pais","encuesta","prev_vida","prev_vida_inf","prev_vida_sup","prev_actual","prev_actual_inf","prev_actual_sup","imputada","casos_vida_n","casos_actual_n","entrevistadas","mujeres_alguna_vez","mujeres_alguna_vez_inf","mujeres_alguna_vez_sup","mujeres_actual","mujeres_actual_inf","mujeres_actual_sup"];
+  var raw = [
+    ["Burkina Faso","DHS 2010",0.4,0.0,1.1,0.1,0.0,0.6,"No",20,13,17062,1500,100,4000,500,0,2000],
+    ["Senegal","DHS 2010-11",0.5,0.0,1.2,0.1,0.0,0.5,"No",19,8,15688,1500,100,3800,300,0,1400],
+    ["Malí","DHS 2006",0.7,0.1,1.6,0.1,0.0,0.5,"No",23,8,14580,2300,200,4900,300,0,1500],
+    ["Níger","DHS 2012",0.8,0.1,1.9,0.3,0.0,0.9,"No",19,10,11154,2800,400,6200,900,0,3000],
+    ["Congo (Brazzaville)","DHS 2011-12",1.7,0.6,2.9,0.1,0.0,0.6,"No",28,6,10818,1600,600,2800,100,0,600],
+    ["RD del Congo","DHS 2007",1.8,0.6,3.0,1.0,0.3,2.0,"No",27,17,9986,25200,9000,43100,14200,3600,27700],
+    ["Chad","MICS 2010",1.9,0.9,3.0,0.3,0.0,1.0,"Sí",45,21,15857,4900,2300,7500,800,0,2500],
+    ["Togo","MICS 2010",2.3,0.9,4.0,1.0,0.1,2.3,"Sí",21,13,6375,3700,1400,6300,1500,200,3500],
+    ["Nigeria","DHS 2008",3.2,2.3,4.1,1.3,0.8,1.9,"No",135,69,33317,115200,82400,147700,46800,28000,67800],
+    ["Camerún","DHS 2011",3.2,2.1,4.4,0.4,0.0,1.0,"No",63,18,15419,15500,10000,21400,1900,100,5000],
+    ["Malaui","DHS 2010",5.1,3.9,6.2,1.5,0.9,2.2,"No",136,50,23010,16900,13100,20900,5200,3200,7500],
+    ["Tanzania","DHS 2010",5.4,3.8,7.2,2.1,1.1,3.4,"No",64,33,10136,55300,39400,73400,21400,10800,34700],
+    ["Guinea","DHS 2012",5.5,3.9,7.4,3.3,2.1,4.7,"No",59,36,9136,13900,9800,18700,8300,5300,11900],
+    ["Sierra Leona","DHS 2013",6.0,4.7,7.5,3.0,2.1,4.0,"No",114,60,16543,8500,6600,10600,4100,2900,5600],
+    ["Benín","DHS 2011-12",6.5,5.1,8.0,4.3,3.3,5.5,"No",122,81,16599,14600,11500,18000,9600,7300,12300],
+    ["Etiopía","DHS 2005",7.1,5.5,8.7,5.6,4.3,7.0,"Sí",111,91,14055,140500,109700,173800,110800,85500,140100],
+    ["Kenia","DHS 2008-09",9.1,7.0,11.5,5.0,3.4,7.0,"Sí",84,54,8436,90100,69400,113700,49900,34000,69200],
+    ["Comoras","DHS 2012",14.1,11.0,17.8,7.6,5.4,10.4,"No",80,45,5323,2300,1800,2900,1200,900,1700],
+    ["Uganda","DHS 2011",19.2,16.3,22.5,10.0,7.6,13.0,"Sí",171,105,8606,142100,120300,166100,74200,56000,95700]
+  ];
+  var PAISES = raw.map(function (r) { var o = {}; cols.forEach(function (c, i) { o[c] = r[i]; }); return o; });
+  var REG = {
+    prev_vida:   { valor: 3.0, inf: 1.3, sup: 5.5 },
+    prev_actual: { valor: 1.0, inf: 0.3, sup: 2.4 },
+    encuestadas: 262100
+  };
+  var HALLAZGOS = [
+    { grupo: "Causa declarada", color: "--fo-c1", items: [["Embarazo o parto", 90.4], ["Cirugía pélvica", 5.3], ["Agresión sexual", 4.3]] },
+    { grupo: "Tratamiento", color: "--fo-c2", items: [["Buscó tratamiento", 70.3], ["Remisión completa tras tratarse", 74.7]] },
+    { grupo: "Motivo para no buscar tratamiento", color: "--fo-c3", items: [["Costo", 23.8], ["No saber dónde tratarse", 22.3], ["No saber que tiene cura", 21.1], ["Vergüenza", 10.9]] }
+  ];
+
+  /* ---------- FORMATOS ---------- */
+  var L = d3.formatLocale({ decimal: ",", thousands: ".", grouping: [3], currency: ["", ""] });
+  var f1 = L.format(".1f"), fInt = L.format(",.0f"), fNum = L.format(",");
+  var css = function (v) { return getComputedStyle(root).getPropertyValue(v).trim(); };
+  var $ = function (s) { return root.querySelector(s); };
+  var set = function (k, t) { var el = $('[data-fo="' + k + '"]'); if (el) el.textContent = t; };
+
+  /* ---------- ENCABEZADO E INDICADORES ---------- */
+  var maxPrev = PAISES.reduce(function (m, r) { return r.prev_vida > m.prev_vida ? r : m; });
+  var maxCarga = PAISES.reduce(function (m, r) { return r.mujeres_actual > m.mujeres_actual ? r : m; });
+  set("maxPrevPais", maxPrev.pais); set("maxPrevVal", f1(maxPrev.prev_vida));
+  set("maxCargaPais", maxCarga.pais); set("maxCargaVal", fInt(maxCarga.mujeres_actual));
+  set("k-prev_vida", f1(REG.prev_vida.valor)); set("k-prev_vida-ic", f1(REG.prev_vida.inf) + "–" + f1(REG.prev_vida.sup));
+  set("k-prev_actual", f1(REG.prev_actual.valor)); set("k-prev_actual-ic", f1(REG.prev_actual.inf) + "–" + f1(REG.prev_actual.sup));
+  set("k-carga", fInt(d3.sum(PAISES, function (d) { return d.mujeres_actual; })));
+  set("k-encuestadas", fInt(REG.encuestadas));
+
+  /* ---------- UTILIDADES ---------- */
+  function measure(svg, texts) {
+    var g = svg.append("g").attr("class", "fo-tick"), w = 0;
+    texts.forEach(function (t) { w = Math.max(w, g.append("text").text(t).node().getComputedTextLength()); });
+    g.remove(); return w;
+  }
+  function showTip(ev, card, title, lines) {
+    var tip = card.querySelector(".fo-tip");
+    tip.replaceChildren();
+    var h = document.createElement("div"); h.className = "fo-tip-h"; h.textContent = title; tip.appendChild(h);
+    lines.forEach(function (t) { var d = document.createElement("div"); d.textContent = t; tip.appendChild(d); });
+    tip.style.display = "block";
+    var r = card.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+    var lx = ev.clientX - r.left + 14, ly = ev.clientY - r.top + 14;
+    if (lx + tw > r.width - 4) lx = ev.clientX - r.left - tw - 14;
+    if (lx < 4) lx = 4;
+    if (ly + th > r.height - 4) ly = ev.clientY - r.top - th - 14;
+    tip.style.left = lx + "px"; tip.style.top = ly + "px";
+  }
+  function hideTip(card) { card.querySelector(".fo-tip").style.display = "none"; }
+  function frame(box, rows) {
+    box.replaceChildren();
+    var W = Math.max(280, box.clientWidth || 600), top = 26, bottom = 6, step = 27;
+    var H = top + rows.length * step + bottom;
+    var svg = d3.select(box).append("svg").attr("width", "100%").attr("viewBox", "0 0 " + W + " " + H).style("display", "block");
+    return { svg: svg, W: W, H: H, top: top, bottom: bottom };
+  }
+  function axis(f, x, ticks, fmt) {
+    f.svg.append("g").selectAll("line").data(ticks).join("line")
+      .attr("x1", x).attr("x2", x).attr("y1", f.top - 4).attr("y2", f.H - f.bottom).attr("stroke", css("--fo-grid"));
+    f.svg.append("g").selectAll("text").data(ticks).join("text").attr("class", "fo-tick")
+      .attr("x", x).attr("y", f.top - 10).attr("text-anchor", "middle").text(fmt);
+  }
+
+  /* ---------- GRÁFICO 1: PREVALENCIA ---------- */
+  var mode = "vida";
+  function drawPrev() {
+    var box = $('[data-fo-chart="prev"]'), card = $('[data-fo-card="prev"]'), c1 = css("--fo-c1");
+    var k = mode === "vida" ? "prev_vida" : "prev_actual";
+    var rows = PAISES.map(function (r) {
+      return { pais: r.pais, enc: r.encuesta, v: r[k], lo: r[k + "_inf"], hi: r[k + "_sup"], imp: r.imputada,
+               n: mode === "vida" ? r.casos_vida_n : r.casos_actual_n, N: r.entrevistadas };
+    }).sort(function (a, b) { return b.v - a.v || b.hi - a.hi; });
+    var f = frame(box, rows);
+    var left = measure(f.svg, rows.map(function (d) { return d.pais; })) + 12;
+    var right = measure(f.svg, rows.map(function (d) { return f1(d.v); })) + 12;
+    var x = d3.scaleLinear([0, d3.max(rows, function (d) { return d.hi; })], [left, f.W - right]).nice();
+    var y = d3.scaleBand(rows.map(function (d) { return d.pais; }), [f.top, f.H - f.bottom]).padding(0.3);
+    axis(f, x, x.ticks(Math.max(2, Math.floor((f.W - left - right) / 64))), fNum);
+    var reg = REG[k].valor;
+    f.svg.append("line").attr("x1", x(reg)).attr("x2", x(reg)).attr("y1", f.top - 4).attr("y2", f.H - f.bottom)
+      .attr("stroke", css("--fo-ref")).attr("stroke-width", 1.5).attr("stroke-dasharray", "4 3");
+    var g = f.svg.append("g").selectAll("g").data(rows).join("g")
+      .attr("transform", function (d) { return "translate(0," + (y(d.pais) + y.bandwidth() / 2) + ")"; });
+    g.append("text").attr("class", "fo-tick fo-label").attr("x", left - 12).attr("dy", "0.35em").attr("text-anchor", "end").text(function (d) { return d.pais; });
+    g.append("line").attr("x1", function (d) { return x(d.lo); }).attr("x2", function (d) { return x(d.hi); })
+      .attr("stroke", c1).attr("stroke-opacity", 0.3).attr("stroke-width", 7).attr("stroke-linecap", "round");
+    g.append("circle").attr("cx", function (d) { return x(d.v); }).attr("r", 4.5).attr("fill", c1);
+    g.append("text").attr("class", "fo-tick").attr("x", function (d) { return x(d.hi) + 8; }).attr("dy", "0.35em").text(function (d) { return f1(d.v); });
+    g.append("rect").attr("x", 0).attr("width", f.W).attr("y", -y.step() / 2).attr("height", y.step()).attr("fill", "transparent")
+      .on("mousemove", function (ev, d) {
+        d3.select(this.parentNode).select("circle").attr("r", 6.5);
+        var lines = [
+          (mode === "vida" ? "Prevalencia de vida: " : "Prevalencia actual: ") + f1(d.v) + " por 1.000",
+          "IC 95 %: " + f1(d.lo) + "–" + f1(d.hi),
+          "Mujeres con síntomas en la muestra: " + fInt(d.n),
+          "Entrevistadas: " + fInt(d.N)
+        ];
+        if (mode === "actual" && d.imp === "Sí") lines.push("Resultado del tratamiento imputado");
+        showTip(ev, card, d.pais + " · " + d.enc, lines);
+      })
+      .on("mouseleave", function () { d3.select(this.parentNode).select("circle").attr("r", 4.5); hideTip(card); });
+    box.style.minHeight = (f.H * box.clientWidth / f.W) + "px";
+  }
+
+  /* ---------- GRÁFICO 2: CARGA ---------- */
+  function drawCarga() {
+    var box = $('[data-fo-chart="carga"]'), card = $('[data-fo-card="carga"]'), c1 = css("--fo-c1");
+    var rows = PAISES.slice().sort(function (a, b) { return b.mujeres_actual - a.mujeres_actual || b.mujeres_alguna_vez - a.mujeres_alguna_vez; });
+    var f = frame(box, rows);
+    var left = measure(f.svg, rows.map(function (d) { return d.pais; })) + 12;
+    var right = measure(f.svg, rows.map(function (d) { return fInt(d.mujeres_actual); })) + 12;
+    var x = d3.scaleLinear([0, d3.max(rows, function (d) { return Math.max(d.mujeres_alguna_vez, d.mujeres_actual_sup); })], [left, f.W - right]).nice();
+    var y = d3.scaleBand(rows.map(function (d) { return d.pais; }), [f.top, f.H - f.bottom]).padding(0.28);
+    axis(f, x, x.ticks(Math.max(2, Math.floor((f.W - left - right) / 80))), function (v) { return v >= 1000 ? fNum(v / 1000) + " mil" : fNum(v); });
+    var bh = Math.min(16, y.bandwidth());
+    var g = f.svg.append("g").selectAll("g").data(rows).join("g")
+      .attr("transform", function (d) { return "translate(0," + (y(d.pais) + y.bandwidth() / 2) + ")"; });
+    g.append("text").attr("class", "fo-tick fo-label").attr("x", left - 12).attr("dy", "0.35em").attr("text-anchor", "end").text(function (d) { return d.pais; });
+    g.append("rect").attr("x", left).attr("y", -bh / 2).attr("height", bh).attr("rx", 4)
+      .attr("width", function (d) { return Math.max(1, x(d.mujeres_alguna_vez) - left); }).attr("fill", c1).attr("fill-opacity", 0.28);
+    g.append("rect").attr("x", left).attr("y", -bh / 2).attr("height", bh).attr("rx", 4)
+      .attr("width", function (d) { return Math.max(1, x(d.mujeres_actual) - left); }).attr("fill", c1);
+    g.append("line").attr("x1", function (d) { return x(d.mujeres_actual_inf); }).attr("x2", function (d) { return x(d.mujeres_actual_sup); })
+      .attr("stroke", css("--fo-fg")).attr("stroke-opacity", 0.55).attr("stroke-width", 1.5);
+    g.append("text").attr("class", "fo-tick")
+      .attr("x", function (d) { return Math.max(x(d.mujeres_alguna_vez), x(d.mujeres_actual_sup)) + 8; })
+      .attr("dy", "0.35em").text(function (d) { return fInt(d.mujeres_actual); });
+    g.append("rect").attr("x", 0).attr("width", f.W).attr("y", -y.step() / 2).attr("height", y.step()).attr("fill", "transparent")
+      .on("mousemove", function (ev, d) {
+        showTip(ev, card, d.pais + " · " + d.encuesta, [
+          "Con síntomas hoy: " + fInt(d.mujeres_actual) + " (" + fInt(d.mujeres_actual_inf) + "–" + fInt(d.mujeres_actual_sup) + ")",
+          "Alguna vez: " + fInt(d.mujeres_alguna_vez) + " (" + fInt(d.mujeres_alguna_vez_inf) + "–" + fInt(d.mujeres_alguna_vez_sup) + ")"
+        ]);
+      })
+      .on("mouseleave", function () { hideTip(card); });
+    box.style.minHeight = (f.H * box.clientWidth / f.W) + "px";
+  }
+
+  /* ---------- HALLAZGOS ---------- */
+  function drawHallazgos() {
+    var box = $('[data-fo-chart="hallazgos"]');
+    box.replaceChildren();
+    HALLAZGOS.forEach(function (gr) {
+      var col = document.createElement("div");
+      var h = document.createElement("h3"); h.textContent = gr.grupo; col.appendChild(h);
+      gr.items.forEach(function (it) {
+        var row = document.createElement("div"); row.className = "fo-hrow";
+        var top = document.createElement("div"); top.className = "fo-hrow-top";
+        var a = document.createElement("span"); a.textContent = it[0];
+        var b = document.createElement("span"); b.className = "v"; b.textContent = f1(it[1]) + " %";
+        top.appendChild(a); top.appendChild(b);
+        var bar = document.createElement("div"); bar.className = "fo-hbar";
+        var fill = document.createElement("div"); fill.style.width = Math.min(100, it[1]) + "%"; fill.style.background = "var(" + gr.color + ")";
+        bar.appendChild(fill); row.appendChild(top); row.appendChild(bar); col.appendChild(row);
+      });
+      box.appendChild(col);
+    });
+  }
+
+  /* ---------- TABLA ---------- */
+  var sortKey = "prev_vida", sortDir = -1, query = "";
+  var tcols = ["pais", "encuesta", "prev_vida", "prev_actual", "imputada", "mujeres_alguna_vez", "mujeres_actual", "entrevistadas"];
+  function drawTable() {
+    var tb = root.querySelector("tbody");
+    tb.replaceChildren();
+    root.querySelectorAll("th").forEach(function (th) {
+      var k = th.querySelector("button").getAttribute("data-k");
+      th.setAttribute("aria-sort", k === sortKey ? (sortDir > 0 ? "ascending" : "descending") : "none");
+    });
+    PAISES.filter(function (r) { return !query || (r.pais + " " + r.encuesta).toLowerCase().indexOf(query) >= 0; })
+      .sort(function (a, b) {
+        var va = a[sortKey], vb = b[sortKey];
+        return (typeof va === "number" ? va - vb : String(va).localeCompare(String(vb), "es")) * sortDir;
+      })
+      .forEach(function (r) {
+        var tr = document.createElement("tr");
+        tcols.forEach(function (c) {
+          var td = document.createElement("td"), v = r[c];
+          td.textContent = (c === "prev_vida" || c === "prev_actual") ? f1(v) : (typeof v === "number" ? fInt(v) : v);
+          tr.appendChild(td);
+        });
+        tb.appendChild(tr);
+      });
+  }
+
+  /* ---------- EVENTOS ---------- */
+  root.querySelectorAll(".fo-toggle button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      mode = b.getAttribute("data-mode");
+      root.querySelectorAll(".fo-toggle button").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+      drawPrev();
+    });
+  });
+  root.querySelectorAll("th button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var k = b.getAttribute("data-k");
+      if (k === sortKey) sortDir = -sortDir;
+      else { sortKey = k; sortDir = (k === "pais" || k === "encuesta" || k === "imputada") ? 1 : -1; }
+      drawTable();
+    });
+  });
+  root.querySelector(".fo-search").addEventListener("input", function (e) { query = e.target.value.trim().toLowerCase(); drawTable(); });
+
+  function drawAll() { drawPrev(); drawCarga(); drawHallazgos(); drawTable(); }
+  var lastW = 0, t;
+  window.addEventListener("resize", function () {
+    clearTimeout(t);
+    t = setTimeout(function () { if (root.clientWidth !== lastW) { lastW = root.clientWidth; drawPrev(); drawCarga(); } }, 150);
+  });
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mq.addEventListener) mq.addEventListener("change", drawAll);
+  }
+  lastW = root.clientWidth;
+  drawAll();
+})();
+</script>
+<!-- ===================== FIN DEL DASHBOARD ===================== -->
+
+</body>
+</html>
