@@ -3,738 +3,740 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carlos Antonio Vélez · Administrador de Empresas y Contador Público</title>
-<meta name="description" content="Carlos Antonio Vélez, Administrador de Empresas y Contador Público egresado de la Universidad Reformada (2026). Servicios contables, tributarios y administrativos para personas naturales y jurídicas en Colombia.">
-<!-- Tipografía Computer Modern (la fuente de LaTeX) -->
+<title>Camilo Andrés Guerrero Martín · Ingeniero Ambiental</title>
+<meta name="description" content="Camilo Andrés Guerrero Martín, ingeniero ambiental. Servicios de control de contaminación y gestión de residuos para personas naturales y jurídicas.">
+
+<!-- Tipografía LaTeX (Computer Modern) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<!-- MathJax para fórmulas en LaTeX -->
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
 <style>
   :root{
-    --bg:#070707;
-    --bg-2:#0e0e0e;
-    --panel:#111111;
-    --line:#242424;
-    --line-2:#333;
-    --ivory:#ece8df;
-    --muted:#9d988c;
-    --dim:#6b6760;
-    --gold:#c8a96a;
-    --gold-soft:rgba(200,169,106,.12);
-    --serif:'Computer Modern Serif','Latin Modern Roman','CMU Serif',Georgia,serif;
-    --sans:'Computer Modern Sans','Latin Modern Sans','CMU Sans Serif',system-ui,sans-serif;
-    --mono:'Computer Modern Typewriter','Latin Modern Mono','CMU Typewriter Text',monospace;
+    --bg:#000000;
+    --panel:#0b0b0b;
+    --panel-2:#121212;
+    --line:#262626;
+    --text:#ecece6;
+    --muted:#9a9a92;
+    --accent:#7fd1a8;      /* verde ambiental */
+    --accent-2:#e9c46a;    /* dorado suave */
+    --danger:#e76f51;
+    --ok:#7fd1a8;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
+  *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:var(--serif);background:var(--bg);color:var(--ivory);line-height:1.7;font-size:18px;-webkit-font-smoothing:antialiased}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(1200px 600px at 80% -10%,rgba(200,169,106,.07),transparent 60%);z-index:0}
-  h1,h2,h3,h4{font-weight:400;line-height:1.2}
-  a{color:var(--gold)}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-  .sc{font-variant:small-caps;letter-spacing:.08em}
-  .eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
-  .rule{display:flex;align-items:center;gap:16px;color:var(--gold);margin:0 0 28px}
-  .rule::before,.rule::after{content:"";height:1px;background:var(--line-2);flex:1}
-  .section-title{font-size:clamp(28px,4vw,40px);margin-bottom:14px}
-  .section-title .num{color:var(--gold);margin-right:12px;font-size:.7em;vertical-align:middle}
-  .lead{font-size:19px;color:var(--muted);max-width:720px}
-  section{padding:64px 0;border-bottom:1px solid var(--line)}
-  section:last-child{border-bottom:none}
-
-  /* Header */
-  header{position:sticky;top:0;z-index:20;background:rgba(7,7,7,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:1120px;margin:0 auto;flex-wrap:wrap}
-  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ivory)}
-  .mono{width:44px;height:44px;border:1px solid var(--gold);display:grid;place-items:center;font-size:19px;color:var(--gold);font-style:italic}
-  .brand strong{display:block;font-weight:400;font-size:17px}
-  .brand span{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-  nav{display:flex;gap:2px;flex-wrap:wrap}
-  nav button{font-family:var(--serif);font-size:16px;border:none;background:none;color:var(--muted);padding:8px 14px;cursor:pointer;position:relative;transition:color .2s}
-  nav button::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .25s}
-  nav button:hover{color:var(--ivory)}
-  nav button.active{color:var(--ivory)}
-  nav button.active::after{transform:scaleX(1)}
-
-  .panel{display:none;animation:fade .45s ease}
-  .panel.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-  /* Hero */
-  .hero{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:center;padding:88px 0 72px}
-  .hero h1{font-size:clamp(38px,6.4vw,66px);margin-bottom:22px;letter-spacing:-.01em}
-  .hero h1 em{color:var(--gold)}
-  .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
-  .btn{font-family:var(--serif);font-size:16px;padding:12px 26px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;transition:.25s;text-decoration:none;display:inline-block}
-  .btn:hover,.btn.solid{background:var(--gold);color:#0a0a0a}
-  .btn.solid:hover{background:transparent;color:var(--gold)}
-  .abstract{border:1px solid var(--line-2);padding:34px 32px;background:var(--bg-2);position:relative}
-  .abstract::before{content:"";position:absolute;top:-1px;left:32px;width:56px;height:2px;background:var(--gold)}
-  .abstract h3{font-size:24px}
-  .abstract .role{color:var(--muted);font-style:italic;margin-bottom:22px}
-  .facts{list-style:none}
-  .facts li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid var(--line);font-size:16px}
-  .facts li span:first-child{color:var(--dim)}
-  .facts li span:last-child{text-align:right}
-
-  .story{display:grid;grid-template-columns:1fr 1fr;gap:56px}
-  .story p{color:var(--muted);margin-bottom:16px;text-align:justify;hyphens:auto}
-  .story p:first-of-type::first-letter{float:left;font-size:64px;line-height:.9;padding:6px 10px 0 0;color:var(--gold)}
-  .values{list-style:none}
-  .values li{padding:16px 0;border-bottom:1px solid var(--line)}
-  .values li strong{font-weight:400;display:block;font-style:italic;color:var(--ivory)}
-  .values li span{color:var(--muted);font-size:16px}
-
-  .grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-  .g3{grid-template-columns:repeat(3,1fr)}
-  .cell{background:var(--bg);padding:30px 28px}
-  .cell .n{color:var(--gold);font-size:14px;font-family:var(--sans);letter-spacing:.2em}
-  .cell h3{font-size:22px;margin:10px 0 8px}
-  .cell p{color:var(--muted);font-size:16px}
-
-  /* Services */
-  .aud{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px}
-  .aud-card{border:1px solid var(--line-2);background:var(--bg-2)}
-  .aud-head{padding:26px 28px;border-bottom:1px solid var(--line-2)}
-  .aud-head h3{font-size:26px}
-  .aud-head h3 em{color:var(--gold)}
-  .aud-head p{color:var(--dim);font-size:15px;font-style:italic}
-  .svc{list-style:none;padding:6px 28px 18px;counter-reset:sv}
-  .svc li{padding:15px 0;border-bottom:1px solid var(--line);counter-increment:sv;display:grid;grid-template-columns:34px 1fr}
-  .svc li:last-child{border-bottom:none}
-  .svc li::before{content:counter(sv,lower-roman)".";color:var(--gold);font-style:italic}
-  .svc strong{font-weight:400;display:block}
-  .svc span{color:var(--muted);font-size:15.5px}
-
-  .tools{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:36px}
-  .tool{background:var(--bg);padding:22px}
-  .tool .cat{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
-  .tool h4{font-size:18px;margin-bottom:4px}
-  .tool p{font-size:14.5px;color:var(--muted)}
-
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:36px;counter-reset:st}
-  .step{counter-increment:st;border-top:1px solid var(--gold);padding-top:16px}
-  .step::before{content:counter(st,upper-roman);font-size:30px;color:var(--gold);display:block;font-style:italic}
-  .step strong{font-weight:400;display:block;margin:4px 0;font-size:19px}
-  .step span{font-size:15.5px;color:var(--muted)}
-
-  /* Projects / dashboards */
-  .overview{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:32px 0}
-  .ov{background:var(--bg);padding:22px 24px}
-  .ov b{display:block;font-weight:400;font-size:36px;color:var(--gold);line-height:1.1}
-  .ov span{font-size:14px;color:var(--muted)}
-  .proj-layout{display:grid;grid-template-columns:290px 1fr;gap:28px;align-items:start}
-  .proj-list{list-style:none;border:1px solid var(--line-2);background:var(--bg-2);position:sticky;top:96px}
-  .proj-list li{border-bottom:1px solid var(--line)}
-  .proj-list li:last-child{border-bottom:none}
-  .proj-list button{width:100%;text-align:left;background:none;border:none;color:var(--muted);font-family:var(--serif);font-size:15.5px;padding:14px 18px;cursor:pointer;display:grid;grid-template-columns:30px 1fr;gap:4px;line-height:1.35;transition:.2s;border-left:2px solid transparent}
-  .proj-list button small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:4px}
-  .proj-list button .i{color:var(--gold);font-style:italic}
-  .proj-list button:hover{color:var(--ivory);background:#141414}
-  .proj-list button.active{color:var(--ivory);background:#151515;border-left-color:var(--gold)}
-  .dash{border:1px solid var(--line-2);background:var(--bg-2);padding:30px}
-  .dash-head h3{font-size:clamp(24px,3vw,30px);margin-bottom:8px}
-  .dash-head p{color:var(--muted);font-style:italic}
-  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:26px 0}
-  .kpi{background:var(--bg);padding:16px 18px}
-  .kpi span{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
-  .kpi b{display:block;font-weight:400;font-size:25px;color:var(--ivory);margin:6px 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .kpi small{font-size:13px;color:var(--gold);font-style:italic}
-  .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 28px;padding:20px 0 6px;border-top:1px solid var(--line)}
-  .controls:empty{display:none}
-  .ctl label{display:flex;justify-content:space-between;font-size:15px;color:var(--muted);margin-bottom:8px}
-  .ctl label output{color:var(--gold);font-family:var(--mono);font-size:14px}
-  .ctl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:var(--line-2);outline:none}
-  .ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--gold);cursor:pointer}
-  .ctl input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid var(--gold);cursor:pointer}
-  .seg{display:flex;flex-wrap:wrap;border:1px solid var(--line-2)}
-  .seg button{flex:1;min-width:max-content;background:none;border:none;border-right:1px solid var(--line-2);color:var(--muted);font-family:var(--serif);font-size:14.5px;padding:8px 12px;cursor:pointer}
-  .seg button:last-child{border-right:none}
-  .seg button.active{background:var(--gold);color:#0a0a0a}
-  .charts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px}
-  figure{border:1px solid var(--line);padding:16px 16px 12px;background:var(--bg)}
-  .cbox{position:relative;height:280px}
-  figcaption{font-size:14.5px;color:var(--muted);margin-bottom:10px}
-  figcaption b{font-weight:400;color:var(--gold);font-variant:small-caps;letter-spacing:.06em;margin-right:6px}
-  .case{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
-  .case dt{font-style:italic;color:var(--gold);font-size:15px}
-  .case dd{color:var(--muted);font-size:15.5px}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-  .tag{font-family:var(--mono);font-size:12.5px;color:var(--muted);border:1px solid var(--line-2);padding:3px 10px}
-  .note{font-size:14.5px;color:var(--dim);font-style:italic;margin-top:24px}
-
-  /* Contact */
-  .contact{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;padding:88px 0}
-  .contact h2{font-size:clamp(32px,5vw,48px);margin-bottom:14px}
-  .contact h2 em{color:var(--gold)}
-  .contact p{color:var(--muted)}
-  .contact ul{list-style:none;border-top:1px solid var(--line-2)}
-  .contact li a{display:flex;justify-content:space-between;gap:16px;color:var(--ivory);text-decoration:none;padding:18px 4px;border-bottom:1px solid var(--line-2);transition:.2s}
-  .contact li a span:first-child{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);align-self:center}
-  .contact li a:hover{color:var(--gold);padding-left:12px}
-
-  footer{border-top:1px solid var(--line);padding:30px 0;font-size:14px;color:var(--dim);text-align:center;font-style:italic;position:relative;z-index:1}
-
-  @media (max-width:980px){
-    .hero,.story,.contact,.proj-layout{grid-template-columns:1fr}
-    .proj-list{position:static;display:grid;grid-template-columns:1fr 1fr}
-    .proj-list li{border-right:1px solid var(--line)}
-    .g3,.tools,.steps,.overview,.kpis{grid-template-columns:repeat(2,1fr)}
-    .aud,.charts,.case{grid-template-columns:1fr}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:"Computer Modern Serif","Latin Modern Roman","CMU Serif",Georgia,serif;
+    font-size:18px;line-height:1.6;
   }
+  a{color:var(--accent)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+
+  /* Encabezado tipo título de artículo LaTeX */
+  header{padding:56px 0 24px;text-align:center;border-bottom:1px solid var(--line)}
+  header h1{font-weight:normal;font-size:2.3rem;margin:0 0 6px;letter-spacing:.01em}
+  header .sub{font-variant:small-caps;color:var(--muted);font-size:1.1rem;letter-spacing:.06em}
+  header .date{font-style:italic;color:var(--muted);margin-top:6px}
+
+  /* Pestañas */
+  nav{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+  nav button{
+    font:inherit;font-variant:small-caps;letter-spacing:.05em;font-size:1rem;
+    background:none;border:none;color:var(--muted);padding:14px 16px;cursor:pointer;
+    border-bottom:2px solid transparent;white-space:nowrap
+  }
+  nav button:hover{color:var(--text)}
+  nav button.active{color:var(--text);border-bottom-color:var(--accent)}
+
+  main{padding:36px 0 60px}
+  .tab{display:none;animation:fade .35s ease}
+  .tab.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  h2{font-weight:normal;font-size:1.7rem;margin:0 0 4px}
+  h2 .num{color:var(--accent);margin-right:12px}
+  h3{font-weight:normal;font-size:1.3rem;margin:34px 0 8px}
+  h3 .num{color:var(--accent-2);margin-right:10px}
+  .lead{color:var(--muted);font-style:italic;margin-top:0}
+  p{text-align:justify;hyphens:auto}
+
+  .abstract{
+    max-width:760px;margin:24px auto;padding:0 28px;font-size:.97rem
+  }
+  .abstract .t{text-align:center;font-weight:bold;font-variant:small-caps;letter-spacing:.06em;margin-bottom:4px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:20px}
+  .card h4{margin:0 0 8px;font-weight:normal;font-size:1.15rem;color:var(--accent)}
+  .card ul{margin:0;padding-left:20px}
+  .card li{margin:4px 0}
+
+  .box{
+    background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:4px;padding:20px 22px;margin:16px 0
+  }
+  .box.theorem{border-left-color:var(--accent-2)}
+  .box .label{font-weight:bold;font-variant:small-caps;letter-spacing:.04em}
+
+  /* Ejercicios interactivos */
+  .exercise{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px;margin:18px 0}
+  .exercise .ex-title{font-weight:bold}
+  .exercise .ex-title em{font-weight:normal;color:var(--muted)}
+  .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px 16px;margin:16px 0}
+  label{display:flex;flex-direction:column;font-size:.92rem;color:var(--muted)}
+  input,select{
+    margin-top:4px;font:inherit;font-family:"Computer Modern Typewriter","Courier New",monospace;
+    font-size:.95rem;background:#000;color:var(--text);border:1px solid #333;border-radius:4px;padding:8px 10px
+  }
+  input:focus,select:focus{outline:none;border-color:var(--accent)}
+  .btn{
+    font:inherit;font-variant:small-caps;letter-spacing:.05em;cursor:pointer;
+    background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:8px 18px
+  }
+  .btn:hover{background:var(--accent);color:#000}
+  .result{
+    margin-top:14px;padding:14px 16px;background:#050505;border:1px dashed #333;border-radius:4px;
+    font-family:"Computer Modern Typewriter","Courier New",monospace;font-size:.95rem;white-space:pre-wrap
+  }
+  .result .ok{color:var(--ok)} .result .bad{color:var(--danger)} .result .warn{color:var(--accent-2)}
+  canvas{width:100%;height:280px;display:block;margin-top:14px;background:#050505;border:1px solid var(--line);border-radius:4px}
+  .note{font-size:.85rem;color:var(--muted);font-style:italic}
+
+  /* Juego de separación */
+  .game-item{font-size:1.4rem;text-align:center;margin:10px 0 14px;min-height:2em}
+  .bins{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .bin{font:inherit;cursor:pointer;border-radius:6px;padding:10px 14px;border:2px solid;min-width:150px;background:#000}
+  .bin.white{border-color:#f2f2f2;color:#f2f2f2}
+  .bin.black{border-color:#777;color:#bbb}
+  .bin.green{border-color:#3fa66b;color:#7fd1a8}
+  .bin.red{border-color:var(--danger);color:var(--danger)}
+  .bin:hover{filter:brightness(1.4)}
+  .score{text-align:center;color:var(--muted);margin-top:12px}
+
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.95rem}
+  th,td{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
+  th{font-variant:small-caps;letter-spacing:.04em;font-weight:normal;color:var(--muted)}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:.9rem}
+
   @media (max-width:600px){
     body{font-size:17px}
-    .wrap,.bar{padding-left:16px;padding-right:16px}
-    .g3,.tools,.steps,.proj-list{grid-template-columns:1fr}
-    .bar{justify-content:center}
-    nav{justify-content:center}
-    .dash{padding:20px 16px}
-    .hero{padding-top:52px}
-    .kpi b{font-size:21px}
+    header h1{font-size:1.75rem}
+    .abstract{padding:0 6px}
+    p{text-align:left}
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="bar">
-    <a href="#inicio" class="brand" onclick="show('inicio');return false;">
-      <div class="mono">CV</div>
-      <div><strong>Carlos Antonio Vélez</strong><span>Administración · Contaduría</span></div>
-    </a>
-    <nav>
-      <button data-tab="inicio" class="active">Sobre mí</button>
-      <button data-tab="servicios">Servicios</button>
-      <button data-tab="proyectos">Proyectos</button>
-      <button data-tab="contacto">Contacto</button>
-    </nav>
+  <div class="wrap">
+    <h1>Camilo Andrés Guerrero Martín</h1>
+    <div class="sub">Ingeniero Ambiental · Universidad Reformada</div>
+    <div class="date">Control de la contaminación &amp; Gestión integral de residuos</div>
   </div>
 </header>
 
+<nav>
+  <div class="wrap" id="tabs">
+    <button data-tab="quien" class="active">§1 Quién soy</button>
+    <button data-tab="servicios">§2 Servicios</button>
+    <button data-tab="emisiones">§3 Control de emisiones</button>
+    <button data-tab="residuos">§4 Gestión de residuos</button>
+    <button data-tab="contacto">§5 Contacto</button>
+  </div>
+</nav>
+
 <main class="wrap">
 
-<!-- ================= SOBRE MÍ ================= -->
-<div class="panel active" id="inicio">
-  <div class="hero">
-    <div>
-      <span class="eyebrow">Colombia · Promoción 2026</span>
-      <h1>Números claros para decisiones <em>seguras</em>.</h1>
-      <p class="lead">Soy Carlos Antonio Vélez, Administrador de Empresas y Contador Público de la Universidad Reformada. Acompaño a personas y empresas a ordenar sus finanzas, cumplir sus obligaciones tributarias y decidir con información confiable.</p>
-      <div class="cta">
-        <button class="btn solid" onclick="show('proyectos')">Explorar proyectos</button>
-        <button class="btn" onclick="show('servicios')">Ver servicios</button>
-      </div>
-    </div>
-    <aside class="abstract">
-      <span class="eyebrow">Resumen</span>
-      <h3>Carlos Antonio Vélez</h3>
-      <p class="role">Administrador de Empresas y Contador Público</p>
-      <ul class="facts">
-        <li><span>Formación</span><span>Universidad Reformada</span></li>
-        <li><span>Año de grado</span><span>2026</span></li>
-        <li><span>Edad</span><span>45 años</span></li>
-        <li><span>Ubicación</span><span>Colombia</span></li>
-        <li><span>Modalidad</span><span>Presencial y virtual</span></li>
-        <li><span>Clientes</span><span>Personas naturales y jurídicas</span></li>
+<!-- ===================== §1 QUIÉN SOY ===================== -->
+<section class="tab active" id="quien">
+  <h2><span class="num">1</span>Quién soy</h2>
+  <p class="lead">Ingeniería ambiental aplicada a problemas reales de la industria y la comunidad.</p>
+
+  <div class="abstract">
+    <div class="t">Resumen</div>
+    <p>Soy <strong>Camilo Andrés Guerrero Martín</strong>, ingeniero ambiental egresado de la <strong>Universidad Reformada</strong>. Mi trabajo se concentra en dos frentes complementarios: el <em>control de la contaminación</em>, especialmente de las emisiones atmosféricas, y la <em>gestión integral de residuos sólidos</em>, desde su generación hasta su aprovechamiento o disposición final.</p>
+    <p>Acompaño a personas naturales y a empresas a cumplir la normativa ambiental vigente, a reducir sus impactos y a convertir esa reducción en ahorro y en ventaja frente a clientes, autoridades y comunidad.</p>
+  </div>
+
+  <h3><span class="num">1.1</span>Enfoque de trabajo</h3>
+  <div class="grid">
+    <div class="card"><h4>Diagnóstico con datos</h4><p>Cada recomendación parte de mediciones, balances de masa y cálculos verificables, no de suposiciones.</p></div>
+    <div class="card"><h4>Cumplimiento normativo</h4><p>Orientación frente al marco ambiental colombiano y los requerimientos de la autoridad ambiental competente.</p></div>
+    <div class="card"><h4>Soluciones viables</h4><p>Propuestas proporcionales al tamaño y presupuesto de cada cliente: desde un hogar hasta una planta industrial.</p></div>
+  </div>
+
+  <h3><span class="num">1.2</span>Áreas de especialidad</h3>
+  <div class="box theorem">
+    <span class="label">Definición 1.1</span> (Control de la contaminación). Conjunto de técnicas de prevención, medición, modelación y tratamiento orientadas a que las descargas al aire, agua y suelo se mantengan dentro de los límites permisibles:
+    \[ C_{\text{emitida}} \le C_{\text{límite}} \]
+  </div>
+  <div class="box theorem">
+    <span class="label">Definición 1.2</span> (Gestión integral de residuos). Ciclo que comprende la prevención, separación en la fuente, recolección, aprovechamiento, tratamiento y disposición final, priorizando siempre los niveles superiores de la jerarquía:
+    \[ \text{Prevenir} \succ \text{Reutilizar} \succ \text{Aprovechar} \succ \text{Tratar} \succ \text{Disponer} \]
+  </div>
+</section>
+
+<!-- ===================== §2 SERVICIOS ===================== -->
+<section class="tab" id="servicios">
+  <h2><span class="num">2</span>Servicios</h2>
+  <p class="lead">Para personas naturales y personas jurídicas.</p>
+
+  <h3><span class="num">2.1</span>Personas jurídicas (industria, comercio, instituciones)</h3>
+  <div class="grid">
+    <div class="card">
+      <h4>Control de emisiones atmosféricas</h4>
+      <ul>
+        <li>Inventario de fuentes fijas y cálculo de emisiones por factores de emisión.</li>
+        <li>Verificación de cumplimiento frente a estándares de emisión.</li>
+        <li>Corrección de concentraciones a condiciones de referencia.</li>
+        <li>Estimación preliminar de dispersión de contaminantes.</li>
+        <li>Selección y evaluación de sistemas de control (ciclones, filtros, lavadores).</li>
+        <li>Huella de carbono organizacional (alcance 1 y 2).</li>
       </ul>
-    </aside>
+    </div>
+    <div class="card">
+      <h4>Gestión de residuos</h4>
+      <ul>
+        <li>Plan de gestión integral de residuos (sólidos y peligrosos).</li>
+        <li>Caracterización y cuantificación de residuos.</li>
+        <li>Programas de separación en la fuente y aprovechamiento.</li>
+        <li>Gestión de residuos peligrosos (RESPEL) y posconsumo.</li>
+        <li>Diseño de centros de acopio y rutas internas.</li>
+        <li>Capacitación del personal.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Gestión ambiental general</h4>
+      <ul>
+        <li>Identificación de aspectos e impactos ambientales.</li>
+        <li>Apoyo en trámites y requerimientos ante la autoridad ambiental.</li>
+        <li>Indicadores de desempeño ambiental.</li>
+        <li>Apoyo a sistemas de gestión ambiental (ISO 14001).</li>
+      </ul>
+    </div>
   </div>
 
-  <section>
-    <div class="story">
-      <div>
-        <h2 class="section-title"><span class="num">§1</span>Mi historia</h2>
-        <p>Llegué a la universidad con una convicción: entender cómo funcionan las organizaciones por dentro y ayudar a que las cuentas de la gente estén en orden. A los 45 años culmino una doble formación —Administración de Empresas y Contaduría Pública— que me permite ver tanto el detalle de un registro contable como el panorama estratégico de un negocio.</p>
-        <p>Ser recién egresado significa que conozco la normatividad vigente, las herramientas digitales que hoy exige la DIAN y las mejores prácticas académicas. Ser un profesional maduro significa que escucho con paciencia, cumplo lo que prometo y entiendo que detrás de cada cifra hay una familia o un emprendimiento.</p>
-      </div>
-      <div>
-        <h2 class="section-title"><span class="num">§2</span>Cómo trabajo</h2>
-        <ul class="values">
-          <li><strong>Ética y confidencialidad.</strong><span>Tu información financiera se maneja con reserva profesional y apego al Código de Ética del contador.</span></li>
-          <li><strong>Lenguaje sencillo.</strong><span>Explico informes e impuestos sin tecnicismos innecesarios, para que sepas qué firmas y por qué.</span></li>
-          <li><strong>Cumplimiento oportuno.</strong><span>Calendario tributario bajo control para evitar sanciones, intereses y sorpresas.</span></li>
-          <li><strong>Visión de negocio.</strong><span>No solo registro: analizo costos, márgenes y flujo de caja para proponer mejoras.</span></li>
-        </ul>
-      </div>
+  <h3><span class="num">2.2</span>Personas naturales (hogares, emprendimientos, conjuntos residenciales)</h3>
+  <div class="grid">
+    <div class="card">
+      <h4>Hogar y conjunto residencial</h4>
+      <ul>
+        <li>Implementación del código de colores para separación en la fuente.</li>
+        <li>Compostaje doméstico y comunitario.</li>
+        <li>Charlas y talleres de educación ambiental.</li>
+      </ul>
     </div>
-  </section>
-
-  <section>
-    <h2 class="section-title"><span class="num">§3</span>Áreas de dominio</h2>
-    <div class="grid g3" style="margin-top:28px">
-      <div class="cell"><span class="n">I</span><h3>Contabilidad y NIIF</h3><p>Registro, conciliaciones y estados financieros bajo NIIF para Pymes y microempresas.</p></div>
-      <div class="cell"><span class="n">II</span><h3>Tributaria</h3><p>Renta, IVA, retención en la fuente, ICA y Régimen Simple de Tributación.</p></div>
-      <div class="cell"><span class="n">III</span><h3>Gestión administrativa</h3><p>Planes de negocio, presupuestos, costos, procesos y análisis financiero.</p></div>
+    <div class="card">
+      <h4>Emprendedores y pequeños negocios</h4>
+      <ul>
+        <li>Orientación sobre obligaciones ambientales básicas.</li>
+        <li>Manejo de residuos del negocio (restaurantes, talleres, peluquerías, etc.).</li>
+        <li>Medidas de bajo costo para reducir consumo y residuos.</li>
+      </ul>
     </div>
-  </section>
-</div>
-
-<!-- ================= SERVICIOS ================= -->
-<div class="panel" id="servicios">
-  <section>
-    <span class="eyebrow">Portafolio de servicios</span>
-    <h2 class="section-title">Servicios para personas naturales y jurídicas</h2>
-    <p class="lead">Soluciones contables, tributarias y administrativas para cada etapa: desde el independiente que declara renta por primera vez hasta la empresa que necesita una contabilidad mensual confiable.</p>
-
-    <div class="aud">
-      <div class="aud-card">
-        <div class="aud-head"><h3>Personas <em>naturales</em></h3><p>Empleados, independientes, profesionales, comerciantes y pensionados</p></div>
-        <ul class="svc">
-          <li><div><strong>Declaración de renta</strong><span>Revisión de topes, depuración de ingresos, rentas exentas y deducciones permitidas.</span></div></li>
-          <li><div><strong>Inscripción y actualización del RUT</strong><span>Gestión ante la DIAN, firma electrónica y responsabilidades correctas.</span></div></li>
-          <li><div><strong>Contabilidad para independientes</strong><span>Control de ingresos y gastos, soporte de costos y archivo de documentos.</span></div></li>
-          <li><div><strong>Facturación electrónica</strong><span>Habilitación y acompañamiento para facturas y documentos soporte.</span></div></li>
-          <li><div><strong>Régimen Simple de Tributación</strong><span>Análisis de conveniencia, inscripción y anticipos bimestrales.</span></div></li>
-          <li><div><strong>Finanzas personales</strong><span>Presupuesto familiar, plan de ahorro, manejo de deudas y lectura de créditos.</span></div></li>
-          <li><div><strong>Certificaciones contables</strong><span>Certificados de ingresos para trámites bancarios, de visa o de crédito.</span></div></li>
-        </ul>
-      </div>
-      <div class="aud-card">
-        <div class="aud-head"><h3>Personas <em>jurídicas</em></h3><p>Microempresas, pymes, SAS, emprendimientos y entidades sin ánimo de lucro</p></div>
-        <ul class="svc">
-          <li><div><strong>Contabilidad mensual</strong><span>Registro, conciliaciones bancarias, cierre mensual y archivo de soportes.</span></div></li>
-          <li><div><strong>Estados financieros bajo NIIF</strong><span>Situación financiera, resultados, flujo de efectivo y notas.</span></div></li>
-          <li><div><strong>Impuestos empresariales</strong><span>IVA, retención, ICA, renta e información exógena.</span></div></li>
-          <li><div><strong>Nómina electrónica y seguridad social</strong><span>Liquidación de nómina, prestaciones, PILA y reporte a la DIAN.</span></div></li>
-          <li><div><strong>Constitución de empresas</strong><span>Creación de SAS, Cámara de Comercio, RUT y obligaciones iniciales.</span></div></li>
-          <li><div><strong>Costos y análisis financiero</strong><span>Costeo, punto de equilibrio, indicadores y flujo de caja proyectado.</span></div></li>
-          <li><div><strong>Planes de negocio y control interno</strong><span>Estudios de viabilidad, procesos y políticas contables.</span></div></li>
-        </ul>
-      </div>
+    <div class="card">
+      <h4>Asesoría puntual</h4>
+      <ul>
+        <li>Consultas técnicas por horas.</li>
+        <li>Revisión de documentos y estudios ambientales.</li>
+        <li>Acompañamiento en visitas técnicas.</li>
+      </ul>
     </div>
-  </section>
-
-  <section>
-    <h2 class="section-title"><span class="num">§</span>Herramientas de trabajo</h2>
-    <p class="lead">Software contable, herramientas de análisis y el marco normativo colombiano, al servicio de información precisa y oportuna.</p>
-    <div class="tools">
-      <div class="tool"><span class="cat">Software contable</span><h4>Siigo</h4><p>Contabilidad, facturación y nómina electrónica.</p></div>
-      <div class="tool"><span class="cat">Software contable</span><h4>Alegra</h4><p>Gestión en la nube para emprendedores.</p></div>
-      <div class="tool"><span class="cat">Software contable</span><h4>World Office · Helisa</h4><p>Sistemas de uso común en empresas colombianas.</p></div>
-      <div class="tool"><span class="cat">DIAN</span><h4>Portal MUISCA</h4><p>RUT, declaraciones, firma electrónica y exógena.</p></div>
-      <div class="tool"><span class="cat">Análisis</span><h4>Excel avanzado</h4><p>Tablas dinámicas, modelos financieros y conciliaciones.</p></div>
-      <div class="tool"><span class="cat">Análisis</span><h4>Power BI</h4><p>Tableros de indicadores financieros y de gestión.</p></div>
-      <div class="tool"><span class="cat">Seguridad social</span><h4>Operadores PILA</h4><p>Aportes a salud, pensión, ARL y parafiscales.</p></div>
-      <div class="tool"><span class="cat">Colaboración</span><h4>Google Workspace</h4><p>Archivo digital y reuniones virtuales.</p></div>
-      <div class="tool"><span class="cat">Normatividad</span><h4>Estatuto Tributario</h4><p>Base de la planeación y el cumplimiento de impuestos.</p></div>
-      <div class="tool"><span class="cat">Normatividad</span><h4>NIIF · Decreto 2420</h4><p>Marco técnico de información financiera.</p></div>
-      <div class="tool"><span class="cat">Gestión</span><h4>Canvas y DOFA</h4><p>Diagnóstico estratégico y modelos de negocio.</p></div>
-      <div class="tool"><span class="cat">Gestión</span><h4>Matemática financiera</h4><p>VPN, TIR, amortizaciones y evaluación de proyectos.</p></div>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title"><span class="num">§</span>Así trabajamos juntos</h2>
-    <div class="steps">
-      <div class="step"><strong>Diagnóstico</strong><span>Conversamos sobre tu situación y revisamos documentos sin costo inicial.</span></div>
-      <div class="step"><strong>Propuesta</strong><span>Alcance, tiempos y honorarios claros, por escrito.</span></div>
-      <div class="step"><strong>Ejecución</strong><span>Proceso la información y cumplo cada fecha del calendario tributario.</span></div>
-      <div class="step"><strong>Seguimiento</strong><span>Revisamos resultados y propongo mejoras para el siguiente periodo.</span></div>
-    </div>
-  </section>
-</div>
-
-<!-- ================= PROYECTOS ================= -->
-<div class="panel" id="proyectos">
-  <section>
-    <span class="eyebrow">Proyectos universitarios</span>
-    <h2 class="section-title">Mi trabajo, en dashboards interactivos</h2>
-    <p class="lead">Ocho proyectos aplicados de mi formación en la Universidad Reformada. Elige uno y mueve los controles: los indicadores y las figuras se recalculan en tiempo real.</p>
-
-    <div class="overview">
-      <div class="ov"><b>8</b><span>proyectos aplicados</span></div>
-      <div class="ov"><b>4</b><span>áreas de conocimiento</span></div>
-      <div class="ov"><b>16</b><span>figuras interactivas</span></div>
-      <div class="ov"><b>2026</b><span>año de grado</span></div>
-    </div>
-
-    <div class="proj-layout">
-      <ul class="proj-list" id="proj-list"></ul>
-      <div class="dash">
-        <div class="dash-head">
-          <span class="eyebrow" id="d-area"></span>
-          <h3 id="d-title"></h3>
-          <p id="d-desc"></p>
-        </div>
-        <div class="kpis" id="d-kpis"></div>
-        <div class="controls" id="d-controls"></div>
-        <div class="charts">
-          <figure><figcaption id="c1-cap"></figcaption><div class="cbox"><canvas id="c1"></canvas></div></figure>
-          <figure><figcaption id="c2-cap"></figcaption><div class="cbox"><canvas id="c2"></canvas></div></figure>
-        </div>
-        <dl class="case" id="d-case"></dl>
-        <div class="tags" id="d-tags"></div>
-      </div>
-    </div>
-    <p class="note">Proyectos académicos. Las cifras son ilustrativas y los nombres de empresas y personas se omiten por confidencialidad.</p>
-  </section>
-</div>
-
-<!-- ================= CONTACTO ================= -->
-<div class="panel" id="contacto">
-  <div class="contact">
-    <div>
-      <span class="eyebrow">Hablemos</span>
-      <h2>¿Necesitas poner en orden <em>tus cuentas</em>?</h2>
-      <p>Cuéntame tu caso. La primera conversación de diagnóstico es sin costo y respondo en menos de 24 horas hábiles.</p>
-    </div>
-    <ul>
-      <!-- Reemplaza estos datos por los tuyos -->
-      <li><a href="mailto:correo@ejemplo.com"><span>Correo</span><span>correo@ejemplo.com</span></a></li>
-      <li><a href="https://wa.me/570000000000" target="_blank" rel="noopener"><span>WhatsApp</span><span>+57 000 000 0000</span></a></li>
-      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener"><span>LinkedIn</span><span>Carlos Antonio Vélez</span></a></li>
-      <li><a href="#contacto" onclick="return false;"><span>Ubicación</span><span>Colombia · presencial y virtual</span></a></li>
-    </ul>
   </div>
-</div>
+
+  <h3><span class="num">2.3</span>Metodología</h3>
+  <table>
+    <tr><th>Etapa</th><th>Descripción</th></tr>
+    <tr><td>1. Diagnóstico</td><td>Visita, levantamiento de información y revisión de requisitos aplicables.</td></tr>
+    <tr><td>2. Análisis</td><td>Cálculos, balances de masa, identificación de brechas y riesgos.</td></tr>
+    <tr><td>3. Propuesta</td><td>Plan de acción con alternativas técnicas y costos estimados.</td></tr>
+    <tr><td>4. Implementación</td><td>Acompañamiento en la ejecución y capacitación.</td></tr>
+    <tr><td>5. Seguimiento</td><td>Indicadores, informes y mejora continua.</td></tr>
+  </table>
+</section>
+
+<!-- ===================== §3 CONTROL DE EMISIONES ===================== -->
+<section class="tab" id="emisiones">
+  <h2><span class="num">3</span>Control de emisiones</h2>
+  <p class="lead">Ejercicios prácticos e interactivos. Cambie los valores y observe los resultados.</p>
+
+  <!-- 3.1 Tasa de emisión y corrección por O2 -->
+  <h3><span class="num">3.1</span>Tasa de emisión y corrección por oxígeno de referencia</h3>
+  <p>Las concentraciones medidas en chimenea deben llevarse a condiciones de referencia antes de compararlas con el estándar de emisión. La corrección por oxígeno es:</p>
+  <div class="box">\[ C_{\text{ref}} = C_{\text{med}} \cdot \frac{21 - O_{2,\text{ref}}}{21 - O_{2,\text{med}}} \]
+  y la tasa de emisión másica:
+  \[ E\;[\mathrm{kg/h}] = \frac{C\;[\mathrm{mg/m^3}] \cdot Q\;[\mathrm{m^3/h}]}{10^{6}} \]</div>
+
+  <div class="exercise">
+    <div class="ex-title">Ejercicio 3.1 <em>— Caldera industrial: ¿cumple el estándar de material particulado?</em></div>
+    <div class="fields">
+      <label>Concentración medida \(C_{\text{med}}\) [mg/m³]<input type="number" id="e1C" value="180"></label>
+      <label>O₂ medido [%]<input type="number" id="e1O2m" value="9" step="0.1"></label>
+      <label>O₂ de referencia [%]<input type="number" id="e1O2r" value="11" step="0.1"></label>
+      <label>Caudal \(Q\) [m³/h]<input type="number" id="e1Q" value="25000"></label>
+      <label>Estándar de emisión [mg/m³]<input type="number" id="e1L" value="200"></label>
+      <label>Horas de operación al año<input type="number" id="e1H" value="6000"></label>
+    </div>
+    <button class="btn" onclick="ex31()">Calcular</button>
+    <div class="result" id="r31">Pulse «Calcular».</div>
+    <p class="note">El estándar aplicable depende del tipo de fuente, combustible y contaminante (en Colombia, Resolución 909 de 2008 para fuentes fijas). El valor por defecto es solo ilustrativo.</p>
+  </div>
+
+  <!-- 3.2 Factores de emisión -->
+  <h3><span class="num">3.2</span>Estimación por factores de emisión</h3>
+  <p>Cuando no hay medición directa, la emisión se estima a partir del nivel de actividad \(A\), un factor de emisión \(FE\) y la eficiencia del sistema de control \(\eta\):</p>
+  <div class="box">\[ E = A \cdot FE \cdot \left(1 - \frac{\eta}{100}\right) \]</div>
+
+  <div class="exercise">
+    <div class="ex-title">Ejercicio 3.2 <em>— Emisiones de CO₂ por consumo de combustible</em></div>
+    <div class="fields">
+      <label>Combustible
+        <select id="e2F">
+          <option value="1.98|m³">Gas natural (≈1,98 kg CO₂/m³)</option>
+          <option value="2.68|L" selected>Diésel / ACPM (≈2,68 kg CO₂/L)</option>
+          <option value="2.31|L">Gasolina (≈2,31 kg CO₂/L)</option>
+          <option value="1.51|L">GLP (≈1,51 kg CO₂/L)</option>
+          <option value="2.42|kg">Carbón bituminoso (≈2,42 kg CO₂/kg)</option>
+        </select>
+      </label>
+      <label>Consumo mensual <span id="e2U">[L]</span><input type="number" id="e2A" value="3000"></label>
+      <label>Meses de operación al año<input type="number" id="e2M" value="12"></label>
+    </div>
+    <button class="btn" onclick="ex32()">Calcular</button>
+    <div class="result" id="r32">Pulse «Calcular».</div>
+    <p class="note">Factores aproximados con fines didácticos. Para reportes oficiales use los factores nacionales vigentes (p. ej., FECOC – UPME).</p>
+  </div>
+
+  <!-- 3.3 Sistemas en serie -->
+  <h3><span class="num">3.3</span>Eficiencia de equipos de control en serie</h3>
+  <p>Si varios equipos se instalan en serie, cada uno remueve una fracción de lo que le llega. La eficiencia global es:</p>
+  <div class="box">\[ \eta_{\text{global}} = 1 - \prod_{i=1}^{n}\left(1-\eta_i\right) \]</div>
+
+  <div class="exercise">
+    <div class="ex-title">Ejercicio 3.3 <em>— Ciclón + filtro de mangas</em></div>
+    <div class="fields">
+      <label>Carga de entrada [kg/h]<input type="number" id="e3In" value="120"></label>
+      <label>Equipo 1
+        <select id="e3a">
+          <option value="0">— Ninguno —</option>
+          <option value="0.80" selected>Ciclón (≈80 %)</option>
+          <option value="0.90">Multiciclón (≈90 %)</option>
+          <option value="0.95">Lavador Venturi (≈95 %)</option>
+        </select></label>
+      <label>Equipo 2
+        <select id="e3b">
+          <option value="0">— Ninguno —</option>
+          <option value="0.99" selected>Filtro de mangas (≈99 %)</option>
+          <option value="0.98">Precipitador electrostático (≈98 %)</option>
+          <option value="0.95">Lavador Venturi (≈95 %)</option>
+        </select></label>
+    </div>
+    <button class="btn" onclick="ex33()">Calcular</button>
+    <div class="result" id="r33">Pulse «Calcular».</div>
+  </div>
+
+  <!-- 3.4 Pluma gaussiana -->
+  <h3><span class="num">3.4</span>Dispersión: modelo de pluma gaussiana</h3>
+  <p>La concentración a nivel del suelo sobre el eje de la pluma, para una chimenea de altura efectiva \(H\), se estima como:</p>
+  <div class="box">\[ C(x,0,0) = \frac{Q}{\pi\, u\, \sigma_y(x)\, \sigma_z(x)} \exp\!\left(-\frac{H^2}{2\,\sigma_z(x)^2}\right) \]
+  donde \(\sigma_y\) y \(\sigma_z\) dependen de la distancia \(x\) y de la clase de estabilidad atmosférica de Pasquill–Gifford (coeficientes de Briggs, zona rural).</div>
+
+  <div class="exercise">
+    <div class="ex-title">Ejercicio 3.4 <em>— ¿A qué distancia ocurre la máxima concentración?</em></div>
+    <div class="fields">
+      <label>Tasa de emisión \(Q\) [g/s]<input type="number" id="e4Q" value="50"></label>
+      <label>Velocidad del viento \(u\) [m/s]<input type="number" id="e4u" value="4" step="0.5"></label>
+      <label>Altura efectiva \(H\) [m]<input type="number" id="e4H" value="60"></label>
+      <label>Estabilidad atmosférica
+        <select id="e4S">
+          <option value="A">A – Muy inestable</option>
+          <option value="B">B – Moderadamente inestable</option>
+          <option value="C">C – Ligeramente inestable</option>
+          <option value="D" selected>D – Neutra</option>
+          <option value="E">E – Ligeramente estable</option>
+          <option value="F">F – Estable</option>
+        </select></label>
+    </div>
+    <button class="btn" onclick="ex34()">Calcular y graficar</button>
+    <div class="result" id="r34">Pulse «Calcular y graficar».</div>
+    <canvas id="c34"></canvas>
+    <p class="note">Modelo simplificado de screening: terreno plano, viento constante, sin reflexión por capa de mezcla. Para estudios formales se usan modelos regulatorios (p. ej., AERMOD).</p>
+  </div>
+</section>
+
+<!-- ===================== §4 GESTIÓN DE RESIDUOS ===================== -->
+<section class="tab" id="residuos">
+  <h2><span class="num">4</span>Gestión de residuos</h2>
+  <p class="lead">Ejercicios prácticos e interactivos sobre generación, separación, aprovechamiento y disposición.</p>
+
+  <!-- 4.1 Separación en la fuente -->
+  <h3><span class="num">4.1</span>Separación en la fuente: código de colores</h3>
+  <p>En Colombia, la Resolución 2184 de 2019 establece el código de colores para la separación de residuos: <strong>blanco</strong> para aprovechables, <strong>negro</strong> para no aprovechables y <strong>verde</strong> para orgánicos aprovechables. Los residuos peligrosos y de posconsumo (pilas, medicamentos, bombillas) van a puntos de recolección especiales.</p>
+
+  <div class="exercise">
+    <div class="ex-title">Ejercicio 4.1 <em>— Juego: ¿en qué caneca va?</em></div>
+    <div class="game-item" id="gItem">…</div>
+    <div class="bins">
+      <button class="bin white" onclick="sortItem('blanco')">Blanca<br><small>aprovechables</small></button>
+      <button class="bin black" onclick="sortItem('negro')">Negra<br><small>no aprovechables</small></button>
+      <button class="bin green" onclick="sortItem('verde')">Verde<br><small>orgánicos</small></button>
+      <button class="bin red" onclick="sortItem('respel')">Posconsumo / RESPEL<br><small>punto especial</small></button>
+    </div>
+    <div class="result" id="gFeedback">Seleccione la caneca correcta.</div>
+    <div class="score" id="gScore"></div>
+    <div style="text-align:center;margin-top:10px"><button class="btn" onclick="startGame()">Reiniciar</button></div>
+  </div>
+
+  <!-- 4.2 Generación y proyección -->
+  <h3><span class="num">4.2</span>Generación de residuos y proyección</h3>
+  <p>La producción per cápita (PPC) permite estimar la generación de un municipio o de una organización. Con una tasa de crecimiento poblacional \(r\):</p>
+  <div class="box">\[ P_t = P_0 (1+r)^t, \qquad G_t\;[\mathrm{t/día}] = \frac{P_t \cdot PPC_t\;[\mathrm{kg/hab\cdot día}]}{1000} \]
+  \[ PPC_t = PPC_0\,(1+k)^t \]</div>
+
+  <div class="exercise">
+    <div class="ex-title">Ejercicio 4.2 <em>— Proyección a 10 años para un municipio</em></div>
+    <div class="fields">
+      <label>Población actual \(P_0\)<input type="number" id="r2P" value="85000"></label>
+      <label>Crecimiento poblacional \(r\) [%/año]<input type="number" id="r2r" value="1.5" step="0.1"></label>
+      <label>PPC inicial [kg/hab·día]<input type="number" id="r2ppc" value="0.75" step="0.01"></label>
+      <label>Crecimiento de la PPC \(k\) [%/año]<input type="number" id="r2k" value="1" step="0.1"></label>
+      <label>Años de proyección<input type="number" id="r2n" value="10"></label>
+      <label>Capacidad por vehículo [t/viaje]<input type="number" id="r2cap" value="8"></label>
+    </div>
+    <button class="btn" onclick="ex42()">Calcular y graficar</button>
+    <div class="result" id="r42">Pulse «Calcular y graficar».</div>
+    <canvas id="c42"></canvas>
+  </div>
+
+  <!-- 4.3 Compostaje C/N -->
+  <h3><span class="num">4.3</span>Compostaje: balance de la relación C/N</h3>
+  <p>Una mezcla de compostaje funciona bien con una relación carbono/nitrógeno cercana a 25–35. Para \(n\) materiales con masa húmeda \(m_i\), humedad \(w_i\), y contenidos en base seca \(\%C_i\) y \(\%N_i\):</p>
+  <div class="box">\[ \left(\frac{C}{N}\right)_{\text{mezcla}} = \frac{\sum_i m_i(1-w_i)\,\%C_i}{\sum_i m_i(1-w_i)\,\%N_i} \]</div>
+
+  <div class="exercise">
+    <div class="ex-title">Ejercicio 4.3 <em>— Restos de cocina + hojarasca</em></div>
+    <table>
+      <tr><th>Material</th><th>Masa [kg]</th><th>Humedad [%]</th><th>%C (b.s.)</th><th>%N (b.s.)</th></tr>
+      <tr><td>Restos de cocina</td>
+        <td><input type="number" id="c1m" value="100"></td><td><input type="number" id="c1w" value="75"></td>
+        <td><input type="number" id="c1c" value="45"></td><td><input type="number" id="c1n" value="2.5" step="0.1"></td></tr>
+      <tr><td>Hojarasca seca</td>
+        <td><input type="number" id="c2m" value="40"></td><td><input type="number" id="c2w" value="15"></td>
+        <td><input type="number" id="c2c" value="48"></td><td><input type="number" id="c2n" value="0.8" step="0.1"></td></tr>
+      <tr><td>Estiércol</td>
+        <td><input type="number" id="c3m" value="0"></td><td><input type="number" id="c3w" value="70"></td>
+        <td><input type="number" id="c3c" value="40"></td><td><input type="number" id="c3n" value="2.0" step="0.1"></td></tr>
+    </table>
+    <button class="btn" onclick="ex43()">Calcular</button>
+    <div class="result" id="r43">Pulse «Calcular».</div>
+    <p class="note">Valores típicos de literatura; cada material real debe caracterizarse en laboratorio.</p>
+  </div>
+
+  <!-- 4.4 Relleno sanitario -->
+  <h3><span class="num">4.4</span>Dimensionamiento preliminar de un relleno sanitario</h3>
+  <p>El volumen requerido se obtiene a partir de la masa acumulada, la densidad del residuo compactado \(\rho_c\) y la fracción de material de cobertura \(f_{mc}\):</p>
+  <div class="box">\[ V = \frac{M_{\text{acum}}}{\rho_c}\,(1+f_{mc}), \qquad A \approx \frac{V}{h}\,(1+f_{\text{aux}}) \]
+  donde \(h\) es la altura promedio del relleno y \(f_{\text{aux}}\) el área adicional para vías, drenajes e instalaciones.</div>
+
+  <div class="exercise">
+    <div class="ex-title">Ejercicio 4.4 <em>— ¿Cuánta área necesita el municipio?</em></div>
+    <div class="fields">
+      <label>Generación diaria [t/día]<input type="number" id="l1G" value="60"></label>
+      <label>Fracción aprovechada [%]<input type="number" id="l1a" value="15"></label>
+      <label>Vida útil [años]<input type="number" id="l1n" value="15"></label>
+      <label>Densidad compactada [t/m³]<input type="number" id="l1d" value="0.8" step="0.05"></label>
+      <label>Material de cobertura [%]<input type="number" id="l1f" value="20"></label>
+      <label>Altura promedio \(h\) [m]<input type="number" id="l1h" value="15"></label>
+      <label>Área auxiliar [%]<input type="number" id="l1x" value="30"></label>
+    </div>
+    <button class="btn" onclick="ex44()">Calcular</button>
+    <div class="result" id="r44">Pulse «Calcular».</div>
+    <p class="note">Observe cómo aumentar el aprovechamiento reduce directamente el área de disposición final requerida.</p>
+  </div>
+</section>
+
+<!-- ===================== §5 CONTACTO ===================== -->
+<section class="tab" id="contacto">
+  <h2><span class="num">5</span>Contacto</h2>
+  <p class="lead">Conversemos sobre las necesidades ambientales de su hogar o su empresa.</p>
+  <div class="grid">
+    <div class="card">
+      <h4>Correo electrónico</h4>
+      <!-- EDITAR: reemplace por su correo real -->
+      <p><a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a></p>
+    </div>
+    <div class="card">
+      <h4>Teléfono / WhatsApp</h4>
+      <!-- EDITAR: reemplace por su número real (formato internacional sin + ni espacios en el enlace) -->
+      <p><a href="https://wa.me/570000000000" target="_blank" rel="noopener">+57 000 000 0000</a></p>
+    </div>
+    <div class="card">
+      <h4>Perfil profesional</h4>
+      <!-- EDITAR: reemplace por su perfil de LinkedIn -->
+      <p><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></p>
+    </div>
+  </div>
+</section>
 
 </main>
 
-<footer>© <span id="year">2026</span> Carlos Antonio Vélez · Administrador de Empresas y Contador Público · Universidad Reformada</footer>
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> Camilo Andrés Guerrero Martín · Ingeniero Ambiental · Universidad Reformada<br>
+    <span class="note">Los ejercicios de esta página son didácticos y no sustituyen un estudio técnico formal.</span>
+  </div>
+</footer>
 
 <script>
-/* ---------- Navegación por pestañas ---------- */
-const tabs = document.querySelectorAll('nav button');
-const panels = document.querySelectorAll('.panel');
-let dashReady = false;
-function show(id){
-  if(!document.getElementById(id) || !document.getElementById(id).classList.contains('panel')) id = 'inicio';
-  panels.forEach(p => p.classList.toggle('active', p.id === id));
-  tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === id));
-  history.replaceState(null,'','#'+id);
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(id === 'proyectos' && !dashReady){ dashReady = true; initDash(); }
-}
-tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.tab)));
-window.addEventListener('hashchange', () => show(location.hash.slice(1)));
-document.getElementById('year').textContent = new Date().getFullYear();
-
 /* ---------- Utilidades ---------- */
-const C = {gold:'#c8a96a', ivory:'#ece8df', muted:'#9d988c', dim:'#5e5a54', line:'#222', red:'#b8735c', blue:'#8ea4b8', green:'#93a785', violet:'#a593b0'};
-const PAL = [C.gold, C.ivory, C.blue, C.red, C.green, C.violet];
-const nf = (n,d=0) => Number(n).toLocaleString('es-CO',{minimumFractionDigits:d,maximumFractionDigits:d});
-const cop = n => '$' + nf(Math.round(n));
-const mill = n => (n < 0 ? '−' : '') + '$' + nf(Math.abs(n), Math.abs(n) < 10 ? 1 : 0) + ' M';
-const pct = (n,d=1) => nf(n,d) + ' %';
-const FONT = "'Computer Modern Serif','Latin Modern Roman','CMU Serif',Georgia,serif";
+const $ = id => document.getElementById(id);
+const v = id => parseFloat($(id).value) || 0;
+const fmt = (x, d = 2) => Number(x).toLocaleString('es-CO', { minimumFractionDigits: d, maximumFractionDigits: d });
+$('year').textContent = new Date().getFullYear();
 
-function opts({legend=true, fmt=null, stacked=false, xLinear=false, xTitle=null, doughnut=false, radar=false}={}){
-  const tip = {backgroundColor:'#0b0b0b', borderColor:C.gold, borderWidth:1, padding:10, titleColor:C.ivory, bodyColor:C.ivory,
-    titleFont:{family:FONT}, bodyFont:{family:FONT},
-    callbacks:{label: c => {
-      const v = (typeof c.parsed === 'object') ? (c.parsed.y ?? c.parsed.r) : c.parsed;
-      const name = c.dataset.label || c.label || '';
-      return ' ' + name + ': ' + (fmt ? fmt(v) : nf(v,2));
-    }}};
-  const o = {responsive:true, maintainAspectRatio:false, animation:{duration:550},
-    plugins:{legend:{display:legend, position:'bottom', labels:{color:C.muted, boxWidth:10, boxHeight:10, padding:14, font:{family:FONT,size:13}}}, tooltip:tip}};
-  if(doughnut){ o.cutout = '66%'; return o; }
-  if(radar){ o.scales = {r:{min:0,max:5,ticks:{stepSize:1,backdropColor:'transparent',color:C.dim,font:{family:FONT}},grid:{color:C.line},angleLines:{color:C.line},pointLabels:{color:C.ivory,font:{family:FONT,size:13}}}}; return o; }
-  o.scales = {
-    x:{stacked, type: xLinear ? 'linear' : 'category', grid:{color:C.line}, ticks:{color:C.muted,font:{family:FONT}}, title: xTitle ? {display:true,text:xTitle,color:C.dim,font:{family:FONT}} : {display:false}},
-    y:{stacked, grid:{color:C.line}, ticks:{color:C.muted,font:{family:FONT}, callback: v => fmt ? fmt(v) : nf(v)}}
-  };
-  if(xLinear) o.scales.x.ticks.callback = v => nf(v);
-  return o;
+/* ---------- Pestañas ---------- */
+const buttons = document.querySelectorAll('#tabs button');
+function openTab(name, push = true) {
+  if (!$(name)) name = 'quien';
+  buttons.forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab').forEach(s => s.classList.toggle('active', s.id === name));
+  if (push) history.replaceState(null, '', '#' + name);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+  if (name === 'emisiones' && plotted34) ex34();
+  if (name === 'residuos' && plotted42) ex42();
 }
-function irr(flows){
-  let lo=-0.99, hi=2;
-  const npv = r => flows.reduce((a,f,t)=>a+f/Math.pow(1+r,t),0);
-  if(npv(lo)*npv(hi) > 0) return NaN;
-  for(let i=0;i<200;i++){ const m=(lo+hi)/2; (npv(lo)*npv(m) <= 0) ? hi=m : lo=m; }
-  return (lo+hi)/2;
-}
-const MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+buttons.forEach(b => b.addEventListener('click', () => openTab(b.dataset.tab)));
+window.addEventListener('load', () => openTab(location.hash.slice(1) || 'quien', false));
 
-/* ---------- Proyectos ---------- */
-const PROJECTS = [
-{
-  area:'Contable', course:'Contabilidad Financiera y NIIF',
-  title:'Convergencia a NIIF para Pymes de una ferretería familiar',
-  desc:'Estado de situación financiera de apertura bajo NIIF para un negocio que llevaba contabilidad local.',
-  reto:'Inventarios sin valorar al valor neto realizable y activos fijos sin depreciación técnica.',
-  hice:'Elaboré el balance de apertura, las políticas contables y las notas a los estados financieros.',
-  res:'Estados financieros comparables y un manual de 14 políticas contables para el negocio.',
-  tags:['NIIF Pymes','Inventarios','Propiedad, planta y equipo','Excel'],
-  controls:[{id:'partida', type:'seg', label:'Partida a analizar', value:'inv', options:[['inv','Inventarios'],['ppe','PP&E'],['cxc','Cartera'],['efe','Efectivo']]}],
-  compute(s){
-    const P = {inv:['Inventarios',180,-18,'Ajuste a valor neto realizable'], ppe:['Propiedad, planta y equipo',210,-22,'Depreciación por vida útil técnica'], cxc:['Cuentas por cobrar',64,-5,'Deterioro de cartera vencida'], efe:['Efectivo',32,0,'Sin ajuste']};
-    const [name,loc,adj,why] = P[s.partida];
-    return {
-      kpis:[['Activo NIIF', mill(441), '−9,3 % vs. norma local'],['Patrimonio NIIF', mill(222), '−19,0 % por ajustes'],['Ajuste en '+name.split(',')[0].toLowerCase(), mill(adj), why],['Políticas contables','14','18 notas reveladas']],
-      c1:{cap:'<b>Fig. 1.</b> Estructura financiera: norma local vs. NIIF (millones COP)', config:{type:'bar',
-        data:{labels:['Activo','Pasivo','Patrimonio'], datasets:[
-          {label:'Norma local', data:[486,212,274], backgroundColor:C.dim},
-          {label:'NIIF', data:[441,219,222], backgroundColor:C.gold}]},
-        options:opts({fmt:mill})}},
-      c2:{cap:'<b>Fig. 2.</b> '+name+': puente de conversión (millones COP)', config:{type:'bar',
-        data:{labels:['Saldo local','Ajuste','Saldo NIIF'], datasets:[{label:name, data:[[0,loc],[loc+adj,loc],[0,loc+adj]], backgroundColor:[C.dim, adj<0?C.red:C.green, C.gold]}]},
-        options:(()=>{const o=opts({legend:false, fmt:mill}); o.plugins.tooltip.callbacks.label = c => { const [a,b]=c.raw; return ' '+mill(c.dataIndex===1?adj:b-a); }; return o;})()}}
-    };
+/* ---------- Gráfica simple en canvas ---------- */
+function drawChart(canvas, xs, series, opts) {
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.clientWidth, H = canvas.clientHeight;
+  if (!W) return;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, W, H);
+  const m = { l: 62, r: 16, t: 18, b: 42 };
+  const xmin = Math.min(...xs), xmax = Math.max(...xs);
+  const all = series.flatMap(s => s.data);
+  const ymax = Math.max(...all) * 1.1 || 1, ymin = 0;
+  const X = x => m.l + (x - xmin) / (xmax - xmin) * (W - m.l - m.r);
+  const Y = y => H - m.b - (y - ymin) / (ymax - ymin) * (H - m.t - m.b);
+  ctx.font = '12px "Computer Modern Serif", serif';
+  ctx.strokeStyle = '#262626'; ctx.fillStyle = '#9a9a92'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const y = ymin + (ymax - ymin) * i / 5;
+    ctx.beginPath(); ctx.moveTo(m.l, Y(y)); ctx.lineTo(W - m.r, Y(y)); ctx.stroke();
+    ctx.textAlign = 'right'; ctx.fillText(fmt(y, y < 10 ? 1 : 0), m.l - 6, Y(y) + 4);
   }
-},
-{
-  area:'Tributario', course:'Impuesto de Renta de Personas Naturales',
-  title:'Consultorio tributario: renta de personas naturales',
-  desc:'Jornadas de atención a la comunidad en el consultorio contable universitario.',
-  reto:'Ciudadanos con dudas sobre si debían declarar y cómo aplicar deducciones.',
-  hice:'Análisis de topes, depuración por cédulas y diligenciamiento del formulario 210 bajo supervisión docente.',
-  res:'Guía práctica de deducciones y rentas exentas para asalariados, independientes y pensionados.',
-  tags:['Formulario 210','MUISCA','Cédula general','Atención al público'],
-  controls:[{id:'seg', type:'seg', label:'Segmento', value:'todos', options:[['todos','Todos'],['asal','Asalariados'],['indep','Independientes'],['pens','Pensionados']]}],
-  compute(s){
-    const D = {asal:{w:[8,11,13,12,10,10],ob:38,sat:4.8}, indep:{w:[5,7,8,9,6,6],ob:33,sat:4.6}, pens:{w:[3,4,5,4,4,3],ob:9,sat:4.9}};
-    const keys = s.seg==='todos' ? ['asal','indep','pens'] : [s.seg];
-    const names = {asal:'Asalariados',indep:'Independientes',pens:'Pensionados'};
-    const total = keys.reduce((a,k)=>a+D[k].w.reduce((x,y)=>x+y,0),0);
-    const ob = keys.reduce((a,k)=>a+D[k].ob,0);
-    const sat = keys.reduce((a,k)=>a+D[k].sat*D[k].w.reduce((x,y)=>x+y,0),0)/total;
-    return {
-      kpis:[['Casos atendidos', nf(total), 'en 6 semanas'],['Obligados a declarar', nf(ob), pct(ob/total*100)+' de los casos'],['Formularios 210', nf(ob), 'diligenciados'],['Satisfacción', nf(sat,1)+' / 5', 'encuesta de salida']],
-      c1:{cap:'<b>Fig. 1.</b> Casos atendidos por semana', config:{type:'line',
-        data:{labels:['S1','S2','S3','S4','S5','S6'], datasets:keys.map((k,i)=>({label:names[k], data:D[k].w, borderColor:PAL[i], backgroundColor:PAL[i], tension:.35, pointRadius:3}))},
-        options:opts({fmt:v=>nf(v)})}},
-      c2:{cap:'<b>Fig. 2.</b> Resultado del análisis de topes', config:{type:'doughnut',
-        data:{labels:['Debía declarar','No obligado'], datasets:[{data:[ob,total-ob], backgroundColor:[C.gold,'#2a2a2a'], borderColor:'#0e0e0e', borderWidth:3}]},
-        options:opts({doughnut:true, fmt:v=>nf(v)+' casos'})}}
-    };
+  for (let i = 0; i <= 5; i++) {
+    const x = xmin + (xmax - xmin) * i / 5;
+    ctx.textAlign = 'center'; ctx.fillText(fmt(x, 0), X(x), H - m.b + 16);
   }
-},
-{
-  area:'Administrativo', course:'Formulación y Evaluación de Proyectos',
-  title:'Plan de negocio para una panadería de barrio',
-  desc:'Estudio de viabilidad para una microempresa de alimentos con inversión inicial limitada.',
-  reto:'Determinar si el negocio era viable con una inversión de $85 millones.',
-  hice:'Estudio de mercado, modelo Canvas, DOFA, estudio técnico, estructura organizacional y evaluación financiera.',
-  res:'Plan de negocio con proyecciones a cinco años y recomendación de formalización como SAS.',
-  tags:['Canvas','DOFA','VPN','TIR','Flujo de caja'],
-  controls:[
-    {id:'g', type:'range', label:'Crecimiento anual de ventas', min:0, max:20, step:1, value:8, fmt:v=>v+' %'},
-    {id:'r', type:'range', label:'Tasa de descuento', min:8, max:24, step:1, value:14, fmt:v=>v+' %'},
-    {id:'m', type:'range', label:'Margen de contribución', min:25, max:50, step:1, value:38, fmt:v=>v+' %'}],
-  compute(s){
-    const inv=85, cf=62, dep=8, tax=.35, y1=240;
-    const ventas=[], util=[], flujos=[-inv];
-    for(let t=0;t<5;t++){ const v=y1*Math.pow(1+s.g/100,t); ventas.push(v); const u=v*s.m/100-cf; util.push(u); flujos.push(u>0?u*(1-tax)+dep:u+dep); }
-    const r=s.r/100;
-    const vpn = flujos.reduce((a,f,t)=>a+f/Math.pow(1+r,t),0);
-    const tir = irr(flujos);
-    const acum=[]; let a=0; flujos.forEach((f,t)=>{a+=f/Math.pow(1+r,t); acum.push(a);});
-    let pb = acum.findIndex(v=>v>=0);
-    return {
-      kpis:[['VPN', mill(vpn), vpn>=0?'proyecto viable':'no viable'],['TIR', isNaN(tir)?'—':pct(tir*100), 'vs. tasa '+s.r+' %'],['Recuperación', pb<0?'> 5 años':pb+' años', 'flujo descontado'],['Ventas año 5', mill(ventas[4]), 'proyección']],
-      c1:{cap:'<b>Fig. 1.</b> Ventas y utilidad operativa proyectadas (millones COP)', config:{type:'bar',
-        data:{labels:['Año 1','Año 2','Año 3','Año 4','Año 5'], datasets:[
-          {type:'bar', label:'Ventas', data:ventas, backgroundColor:'#2c2c2c', borderColor:C.dim, borderWidth:1},
-          {type:'line', label:'Utilidad operativa', data:util, borderColor:C.gold, backgroundColor:C.gold, tension:.3, pointRadius:4}]},
-        options:opts({fmt:mill})}},
-      c2:{cap:'<b>Fig. 2.</b> Flujo de caja descontado acumulado (millones COP)', config:{type:'line',
-        data:{labels:['Año 0','Año 1','Año 2','Año 3','Año 4','Año 5'], datasets:[
-          {label:'Flujo acumulado', data:acum, borderColor:C.gold, backgroundColor:'rgba(200,169,106,.12)', fill:true, tension:.3, pointRadius:4,
-           pointBackgroundColor:acum.map(v=>v>=0?C.gold:C.red)}]},
-        options:opts({legend:false, fmt:mill})}}
-    };
-  }
-},
-{
-  area:'Financiero', course:'Costos y Presupuestos',
-  title:'Sistema de costeo para un taller de confección',
-  desc:'Costeo por órdenes de producción para una pequeña empresa manufacturera.',
-  reto:'Precios fijados “al ojo”, sin conocer el costo real de cada prenda.',
-  hice:'Hojas de costo por orden, asignación de costos indirectos (CIF) y cálculo del punto de equilibrio.',
-  res:'Plantilla de costeo en Excel y propuesta de precios con un margen objetivo definido.',
-  tags:['Costeo por órdenes','CIF','Punto de equilibrio','Excel'],
-  controls:[
-    {id:'p', type:'range', label:'Precio de venta por prenda', min:30000, max:90000, step:1000, value:58000, fmt:cop},
-    {id:'cv', type:'range', label:'Costo variable unitario', min:18000, max:50000, step:1000, value:34000, fmt:cop},
-    {id:'cf', type:'range', label:'Costos fijos mensuales', min:4000000, max:20000000, step:200000, value:9600000, fmt:cop}],
-  compute(s){
-    const mc = s.p - s.cv, ok = mc > 0;
-    const pe = ok ? s.cf/mc : Infinity;
-    const maxU = ok ? Math.max(200, Math.ceil(pe*2/50)*50) : 1000;
-    const pts = n => Array.from({length:11},(_,i)=>{const u=maxU*i/10; return {x:Math.round(u), y:n(u)};});
-    return {
-      kpis:[['Margen unitario', cop(mc), ok?pct(mc/s.p*100)+' del precio':'precio insuficiente'],['Punto de equilibrio', ok?nf(Math.ceil(pe))+' u.':'No alcanzable', 'prendas al mes'],['Ventas de equilibrio', ok?cop(Math.ceil(pe)*s.p):'—', 'mensuales'],['Utilidad con '+nf(Math.round(maxU*.75))+' u.', cop(maxU*.75*mc - s.cf), 'escenario de referencia']],
-      c1:{cap:'<b>Fig. 1.</b> Análisis costo–volumen–utilidad (COP)', config:{type:'line',
-        data:{datasets:[
-          {label:'Ingresos', data:pts(u=>u*s.p), borderColor:C.gold, backgroundColor:C.gold, pointRadius:0, tension:0},
-          {label:'Costos totales', data:pts(u=>s.cf+u*s.cv), borderColor:C.blue, backgroundColor:C.blue, pointRadius:0, tension:0},
-          {label:'Costos fijos', data:pts(()=>s.cf), borderColor:C.dim, borderDash:[5,5], pointRadius:0}]},
-        options:opts({xLinear:true, xTitle:'Prendas al mes', fmt:v=>'$'+nf(v/1e6,1)+' M'})}},
-      c2:{cap:'<b>Fig. 2.</b> Composición del costo variable unitario', config:{type:'doughnut',
-        data:{labels:['Materia prima','Mano de obra directa','CIF variables'], datasets:[{data:[s.cv*.62, s.cv*.25, s.cv*.13], backgroundColor:[C.gold,C.ivory,C.dim], borderColor:'#0e0e0e', borderWidth:3}]},
-        options:opts({doughnut:true, fmt:cop})}}
-    };
-  }
-},
-{
-  area:'Financiero', course:'Análisis Financiero',
-  title:'Diagnóstico financiero de una empresa comercial',
-  desc:'Análisis de tres años de estados financieros de una empresa del sector comercio.',
-  reto:'Explicar la caída sostenida de la rentabilidad entre 2023 y 2025.',
-  hice:'Análisis vertical y horizontal, indicadores de liquidez, endeudamiento y rentabilidad, y tablero en Power BI.',
-  res:'Informe gerencial con hallazgos y tres recomendaciones sobre capital de trabajo.',
-  tags:['Indicadores','Análisis vertical','Power BI','Informe gerencial'],
-  controls:[{id:'grp', type:'seg', label:'Grupo de indicadores', value:'liq', options:[['liq','Liquidez'],['end','Endeudamiento'],['ren','Rentabilidad'],['act','Actividad']]}],
-  compute(s){
-    const Y=['2023','2024','2025'];
-    const G = {
-      liq:{t:'Liquidez (veces)', f:v=>nf(v,2)+' x', s:[['Razón corriente',[1.82,1.61,1.38]],['Prueba ácida',[1.05,0.88,0.71]]]},
-      end:{t:'Endeudamiento', f:v=>nf(v,2), s:[['Nivel de endeudamiento (%)',[48,54,61]],['Apalancamiento (x)',[0.92,1.17,1.56]]]},
-      ren:{t:'Rentabilidad (%)', f:v=>pct(v), s:[['Margen neto',[6.8,5.1,3.2]],['ROA',[7.9,5.6,3.3]],['ROE',[15.2,12.2,8.5]]]},
-      act:{t:'Actividad (días)', f:v=>nf(v)+' días', s:[['Rotación de inventario',[62,74,91]],['Rotación de cartera',[38,41,47]],['Rotación de proveedores',[45,44,42]]]}
-    }[s.grp];
-    return {
-      kpis:[['Ventas 2025', mill(3420), '+4,2 % vs. 2024'],['Margen neto', pct(3.2), '−3,6 p.p. en dos años'],['Inventario', '91 días', '+29 días desde 2023'],['Ciclo de caja', '96 días', 'antes 55 días']],
-      c1:{cap:'<b>Fig. 1.</b> Evolución de indicadores: '+G.t, config:{type:'line',
-        data:{labels:Y, datasets:G.s.map(([n,d],i)=>({label:n, data:d, borderColor:PAL[i], backgroundColor:PAL[i], tension:.3, pointRadius:4}))},
-        options:opts({fmt:G.f})}},
-      c2:{cap:'<b>Fig. 2.</b> Análisis vertical del activo 2023 vs. 2025 (%)', config:{type:'bar',
-        data:{labels:['Efectivo','Cartera','Inventarios','PP&E'], datasets:[
-          {label:'2023', data:[14,21,32,33], backgroundColor:C.dim},
-          {label:'2025', data:[8,22,41,29], backgroundColor:C.gold}]},
-        options:opts({fmt:v=>pct(v,0)})}}
-    };
-  }
-},
-{
-  area:'Tributario', course:'Procedimiento Tributario',
-  title:'Calendario y matriz de obligaciones para una SAS',
-  desc:'Cumplimiento tributario integral para una empresa de servicios.',
-  reto:'Evitar sanciones por presentación extemporánea de declaraciones.',
-  hice:'Matriz de obligaciones nacionales y municipales y simulación de la sanción por extemporaneidad (art. 641 E.T.).',
-  res:'Calendario anual con alertas y un procedimiento interno de revisión previa.',
-  tags:['IVA','Retención en la fuente','ICA','Renta','Exógena'],
-  controls:[
-    {id:'imp', type:'seg', label:'Impuesto', value:'todos', options:[['todos','Todos'],['ret','Retención'],['iva','IVA'],['ica','ICA'],['ren','Renta']]},
-    {id:'cargo', type:'range', label:'Impuesto a cargo (simulación)', min:1000000, max:50000000, step:500000, value:12000000, fmt:cop},
-    {id:'meses', type:'range', label:'Meses de retraso', min:1, max:24, step:1, value:3, fmt:v=>v+(v===1?' mes':' meses')}],
-  compute(s){
-    const O = {
-      ret:{n:'Retención', d:[1,1,1,1,1,1,1,1,1,1,1,1]},
-      iva:{n:'IVA', d:[1,0,1,0,1,0,1,0,1,0,1,0]},
-      ica:{n:'ICA', d:[0,1,0,1,0,1,0,1,0,1,0,1]},
-      ren:{n:'Renta', d:[0,0,0,0,1,0,1,0,0,0,0,0]},
-      exo:{n:'Exógena', d:[0,0,0,0,1,0,0,0,0,0,0,0]}};
-    const keys = s.imp==='todos' ? Object.keys(O) : [s.imp];
-    const tot = MESES.map((_,i)=>keys.reduce((a,k)=>a+O[k].d[i],0));
-    const total = tot.reduce((a,b)=>a+b,0);
-    const peak = MESES[tot.indexOf(Math.max(...tot))];
-    const sanc = m => Math.min(0.05*m,1)*s.cargo;
-    return {
-      kpis:[['Obligaciones al año', nf(total), keys.length>1?'todas las obligaciones':O[keys[0]].n],['Mes más cargado', peak, Math.max(...tot)+' vencimientos'],['Sanción estimada', cop(sanc(s.meses)), pct(Math.min(5*s.meses,100),0)+' del impuesto'],['Costo de no planear', cop(sanc(s.meses)), 'evitable con calendario']],
-      c1:{cap:'<b>Fig. 1.</b> Vencimientos por mes y tipo de obligación', config:{type:'bar',
-        data:{labels:MESES, datasets:keys.map((k,i)=>({label:O[k].n, data:O[k].d, backgroundColor:PAL[i]}))},
-        options:opts({stacked:true, fmt:v=>nf(v)})}},
-      c2:{cap:'<b>Fig. 2.</b> Sanción por extemporaneidad: 5 % por mes, tope 100 % (COP)', config:{type:'bar',
-        data:{labels:Array.from({length:24},(_,i)=>i+1), datasets:[{label:'Sanción', data:Array.from({length:24},(_,i)=>sanc(i+1)), backgroundColor:Array.from({length:24},(_,i)=>i+1===s.meses?C.gold:'#2c2c2c')}]},
-        options:(()=>{const o=opts({legend:false, fmt:v=>'$'+nf(v/1e6,1)+' M'}); o.scales.x.title={display:true,text:'Meses de retraso',color:C.dim,font:{family:FONT}}; return o;})()}}
-    };
-  }
-},
-{
-  area:'Contable', course:'Auditoría y Control Interno',
-  title:'Evaluación de control interno en una cooperativa',
-  desc:'Auditoría aplicada al área de tesorería de una entidad sin ánimo de lucro.',
-  reto:'Diferencias recurrentes entre los saldos de caja y los registros contables.',
-  hice:'Evaluación con el modelo COSO, pruebas de recorrido, arqueos sorpresa y conciliaciones bancarias.',
-  res:'Carta de recomendaciones con controles de segregación de funciones y autorizaciones.',
-  tags:['COSO','Arqueos','Conciliaciones','Carta de control'],
-  controls:[{id:'esc', type:'seg', label:'Escenario COSO', value:'comp', options:[['antes','Diagnóstico'],['desp','Con controles'],['comp','Comparar']]}],
-  compute(s){
-    const L=['Entorno de control','Evaluación de riesgos','Actividades de control','Información y comunicación','Supervisión'];
-    const A=[2.4,1.8,2.1,2.6,1.5], D=[4.2,3.9,4.0,4.3,3.8];
-    const ds=[];
-    if(s.esc!=='desp') ds.push({label:'Diagnóstico', data:A, borderColor:C.red, backgroundColor:'rgba(184,115,92,.18)', pointBackgroundColor:C.red});
-    if(s.esc!=='antes') ds.push({label:'Con controles', data:D, borderColor:C.gold, backgroundColor:'rgba(200,169,106,.18)', pointBackgroundColor:C.gold});
-    const avg = a => a.reduce((x,y)=>x+y,0)/a.length;
-    const diff=[-420,310,-780,-150,560,-390];
-    return {
-      kpis:[['Madurez COSO', nf(s.esc==='desp'?avg(D):avg(A),1)+' / 5', s.esc==='comp'?'+'+nf(avg(D)-avg(A),1)+' con controles':'escala 1–5'],['Hallazgos','11','4 de riesgo alto'],['Controles propuestos','9','segregación y autorización'],['Diferencias de caja', mill(diff.reduce((a,b)=>a+Math.abs(b),0)/1000), 'acumuladas en 6 meses']],
-      c1:{cap:'<b>Fig. 1.</b> Componentes COSO (escala 1–5)', config:{type:'radar', data:{labels:L, datasets:ds}, options:opts({radar:true, fmt:v=>nf(v,1)})}},
-      c2:{cap:'<b>Fig. 2.</b> Diferencias en arqueos de caja (miles COP)', config:{type:'bar',
-        data:{labels:['Mes 1','Mes 2','Mes 3','Mes 4','Mes 5','Mes 6'], datasets:[{label:'Diferencia', data:diff, backgroundColor:diff.map(v=>v<0?C.red:C.gold)}]},
-        options:opts({legend:false, fmt:v=>'$'+nf(v)+' mil'})}}
-    };
-  }
-},
-{
-  area:'Administrativo', course:'Gestión del Talento Humano',
-  title:'Liquidación de nómina y prestaciones para una pyme',
-  desc:'Caso práctico de costo laboral y nómina electrónica.',
-  reto:'Calcular el costo real de la nómina, más allá del salario pactado.',
-  hice:'Liquidación de prestaciones sociales, aportes a seguridad social y parafiscales, y estructura de la nómina electrónica.',
-  res:'Modelo de nómina reutilizable y manual de procedimientos de pago.',
-  tags:['Nómina electrónica','PILA','Prestaciones sociales','Parafiscales'],
-  controls:[
-    {id:'n', type:'range', label:'Número de trabajadores', min:1, max:40, step:1, value:12, fmt:v=>v},
-    {id:'sal', type:'range', label:'Salario promedio mensual', min:1500000, max:8000000, step:100000, value:2400000, fmt:cop},
-    {id:'exo', type:'seg', label:'Exoneración de aportes (art. 114-1 E.T.)', value:'si', options:[['si','Aplica'],['no','No aplica']]}],
-  compute(s){
-    const S=s.sal, ex=s.exo==='si';
-    const prest = S*(0.0833+0.01+0.0833+0.0417);
-    const ss = S*(0.12+0.00522+(ex?0:0.085));
-    const para = S*(0.04+(ex?0:0.05));
-    const per = S+prest+ss+para;
-    const factor = (per/S-1)*100;
-    return {
-      kpis:[['Costo mensual empresa', cop(per*s.n), s.n+' trabajadores'],['Costo por trabajador', cop(per), 'por mes'],['Factor prestacional', pct(factor), 'sobre el salario'],['Costo anual', mill(per*s.n*12/1e6), 'nómina total']],
-      c1:{cap:'<b>Fig. 1.</b> Composición del costo por trabajador (COP/mes)', config:{type:'doughnut',
-        data:{labels:['Salario','Prestaciones sociales','Seguridad social','Parafiscales'], datasets:[{data:[S,prest,ss,para], backgroundColor:[C.dim,C.gold,C.ivory,C.blue], borderColor:'#0e0e0e', borderWidth:3}]},
-        options:opts({doughnut:true, fmt:cop})}},
-      c2:{cap:'<b>Fig. 2.</b> Detalle mensual de cargas sobre el salario (COP, total empresa)', config:{type:'bar',
-        data:{labels:['Cesantías','Int. cesantías','Prima','Vacaciones','Pensión','ARL','Salud','Caja','ICBF + SENA'],
-          datasets:[{label:'Total', data:[.0833,.01,.0833,.0417,.12,.00522,ex?0:.085,.04,ex?0:.05].map(r=>r*S*s.n), backgroundColor:[C.gold,C.gold,C.gold,C.gold,C.ivory,C.ivory,C.ivory,C.blue,C.blue]}]},
-        options:opts({legend:false, fmt:v=>'$'+nf(v/1e6,1)+' M'})}}
-    };
-  }
-}];
-
-/* ---------- Motor del dashboard ---------- */
-let current = 0, state = {}, charts = [null,null];
-function initDash(){
-  if(typeof Chart === 'undefined'){ document.getElementById('d-desc').textContent = 'No se pudo cargar la librería de gráficos.'; return; }
-  Chart.defaults.font.family = FONT;
-  Chart.defaults.color = C.muted;
-  const list = document.getElementById('proj-list');
-  const roman = ['i','ii','iii','iv','v','vi','vii','viii'];
-  list.innerHTML = PROJECTS.map((p,i)=>`<li><button data-i="${i}"><span class="i">${roman[i]}.</span><span>${p.title}<small>${p.area}</small></span></button></li>`).join('');
-  list.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{ selectProject(+b.dataset.i); if(window.innerWidth<980) document.querySelector('.dash').scrollIntoView({behavior:'smooth'}); }));
-  selectProject(0);
-}
-function selectProject(i){
-  current = i; const p = PROJECTS[i];
-  state = {}; p.controls.forEach(c=>state[c.id]=c.value);
-  document.querySelectorAll('#proj-list button').forEach(b=>b.classList.toggle('active', +b.dataset.i===i));
-  document.getElementById('d-area').textContent = p.area + ' · ' + p.course;
-  document.getElementById('d-title').textContent = p.title;
-  document.getElementById('d-desc').textContent = p.desc;
-  document.getElementById('d-case').innerHTML = `<div><dt>Reto</dt><dd>${p.reto}</dd></div><div><dt>Qué hice</dt><dd>${p.hice}</dd></div><div><dt>Resultado</dt><dd>${p.res}</dd></div>`;
-  document.getElementById('d-tags').innerHTML = p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
-  const box = document.getElementById('d-controls');
-  box.innerHTML = p.controls.map(c => c.type==='range'
-    ? `<div class="ctl"><label for="ctl-${c.id}">${c.label}<output id="out-${c.id}">${c.fmt(c.value)}</output></label><input type="range" id="ctl-${c.id}" data-id="${c.id}" min="${c.min}" max="${c.max}" step="${c.step}" value="${c.value}"></div>`
-    : `<div class="ctl"><label>${c.label}</label><div class="seg" data-id="${c.id}">${c.options.map(([v,l])=>`<button data-v="${v}" class="${v===c.value?'active':''}">${l}</button>`).join('')}</div></div>`).join('');
-  box.querySelectorAll('input[type=range]').forEach(inp=>inp.addEventListener('input',()=>{
-    const c = p.controls.find(x=>x.id===inp.dataset.id);
-    state[c.id] = +inp.value; document.getElementById('out-'+c.id).textContent = c.fmt(+inp.value); render(false);
-  }));
-  box.querySelectorAll('.seg').forEach(seg=>seg.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
-    seg.querySelectorAll('button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
-    state[seg.dataset.id] = b.dataset.v; render(false);
-  })));
-  render(true);
-}
-function render(rebuild){
-  const r = PROJECTS[current].compute(state);
-  document.getElementById('d-kpis').innerHTML = r.kpis.map(([l,v,s])=>`<div class="kpi"><span>${l}</span><b title="${v}">${v}</b><small>${s}</small></div>`).join('');
-  [r.c1, r.c2].forEach((c,i)=>{
-    document.getElementById('c'+(i+1)+'-cap').innerHTML = c.cap;
-    if(rebuild || !charts[i]){ if(charts[i]) charts[i].destroy(); charts[i] = new Chart(document.getElementById('c'+(i+1)), c.config); }
-    else { charts[i].data = c.config.data; charts[i].options = c.config.options; charts[i].update(); }
+  ctx.fillText(opts.xlabel, (m.l + W - m.r) / 2, H - 6);
+  ctx.save(); ctx.translate(14, (m.t + H - m.b) / 2); ctx.rotate(-Math.PI / 2);
+  ctx.fillText(opts.ylabel, 0, 0); ctx.restore();
+  series.forEach(s => {
+    ctx.strokeStyle = s.color; ctx.lineWidth = 2; ctx.beginPath();
+    s.data.forEach((y, i) => i ? ctx.lineTo(X(xs[i]), Y(y)) : ctx.moveTo(X(xs[i]), Y(y)));
+    ctx.stroke();
   });
+  if (opts.marker) {
+    ctx.fillStyle = '#e9c46a'; ctx.beginPath();
+    ctx.arc(X(opts.marker[0]), Y(opts.marker[1]), 5, 0, 2 * Math.PI); ctx.fill();
+  }
 }
 
-if(location.hash) show(location.hash.slice(1));
+/* ---------- 3.1 ---------- */
+function ex31() {
+  const C = v('e1C'), O2m = v('e1O2m'), O2r = v('e1O2r'), Q = v('e1Q'), L = v('e1L'), h = v('e1H');
+  if (O2m >= 21) { $('r31').innerHTML = '<span class="bad">El O₂ medido debe ser menor que 21 %.</span>'; return; }
+  const Cref = C * (21 - O2r) / (21 - O2m);
+  const E = Cref * Q / 1e6;
+  const anual = E * h / 1000;
+  const ok = Cref <= L;
+  $('r31').innerHTML =
+`C_ref = ${fmt(C)} × (21 − ${fmt(O2r,1)}) / (21 − ${fmt(O2m,1)}) = ${fmt(Cref)} mg/m³
+E     = ${fmt(Cref)} × ${fmt(Q,0)} / 10⁶ = ${fmt(E,3)} kg/h
+Emisión anual ≈ ${fmt(anual)} t/año
+
+Estándar: ${fmt(L)} mg/m³  →  ${ok
+  ? '<span class="ok">CUMPLE (margen ' + fmt((1 - Cref / L) * 100, 1) + ' %)</span>'
+  : '<span class="bad">NO CUMPLE: excede en ' + fmt((Cref / L - 1) * 100, 1) + ' %. Se requiere un sistema de control.</span>'}`;
+}
+
+/* ---------- 3.2 ---------- */
+$('e2F').addEventListener('change', () => { $('e2U').textContent = '[' + $('e2F').value.split('|')[1] + ']'; });
+function ex32() {
+  const [fe, u] = $('e2F').value.split('|'); const FE = parseFloat(fe);
+  const A = v('e2A'), M = v('e2M');
+  const mes = A * FE / 1000, anual = mes * M;
+  const arboles = anual * 1000 / 22; // ~22 kg CO2/árbol·año (orden de magnitud)
+  $('r32').innerHTML =
+`E_mensual = ${fmt(A,0)} ${u} × ${fmt(FE)} kg CO₂/${u} = ${fmt(mes)} t CO₂/mes
+E_anual   = ${fmt(anual)} t CO₂/año
+
+<span class="warn">Equivale, en orden de magnitud, a la captura anual de ≈ ${fmt(arboles,0)} árboles adultos.</span>
+Una reducción del 10 % en el consumo evitaría ≈ ${fmt(anual*0.1)} t CO₂/año.`;
+}
+
+/* ---------- 3.3 ---------- */
+function ex33() {
+  const In = v('e3In'), a = parseFloat($('e3a').value), b = parseFloat($('e3b').value);
+  const after1 = In * (1 - a), out = after1 * (1 - b), eta = 1 - (1 - a) * (1 - b);
+  $('r33').innerHTML =
+`Entrada:            ${fmt(In)} kg/h
+Tras equipo 1:      ${fmt(after1)} kg/h  (remueve ${fmt(In - after1)} kg/h)
+Tras equipo 2:      ${fmt(out, 3)} kg/h  (remueve ${fmt(after1 - out)} kg/h)
+
+η_global = 1 − (1 − ${fmt(a)})(1 − ${fmt(b)}) = <span class="ok">${fmt(eta * 100, 2)} %</span>`;
+}
+
+/* ---------- 3.4 Pluma gaussiana ---------- */
+const briggs = {
+  A: { y: x => 0.22 * x / Math.sqrt(1 + 0.0001 * x), z: x => 0.20 * x },
+  B: { y: x => 0.16 * x / Math.sqrt(1 + 0.0001 * x), z: x => 0.12 * x },
+  C: { y: x => 0.11 * x / Math.sqrt(1 + 0.0001 * x), z: x => 0.08 * x / Math.sqrt(1 + 0.0002 * x) },
+  D: { y: x => 0.08 * x / Math.sqrt(1 + 0.0001 * x), z: x => 0.06 * x / Math.sqrt(1 + 0.0015 * x) },
+  E: { y: x => 0.06 * x / Math.sqrt(1 + 0.0001 * x), z: x => 0.03 * x / (1 + 0.0003 * x) },
+  F: { y: x => 0.04 * x / Math.sqrt(1 + 0.0001 * x), z: x => 0.016 * x / (1 + 0.0003 * x) }
+};
+let plotted34 = false;
+function ex34() {
+  const Q = v('e4Q'), u = Math.max(v('e4u'), 0.5), H = v('e4H'), s = briggs[$('e4S').value];
+  const xs = [], cs = [];
+  let best = [0, 0];
+  for (let x = 50; x <= 10000; x += 25) {
+    const sy = s.y(x), sz = s.z(x);
+    const c = Q / (Math.PI * u * sy * sz) * Math.exp(-H * H / (2 * sz * sz)) * 1e6; // µg/m³
+    xs.push(x); cs.push(c);
+    if (c > best[1]) best = [x, c];
+  }
+  const c1k = cs[xs.indexOf(1000)];
+  $('r34').innerHTML =
+`Concentración máxima a nivel del suelo: <span class="warn">${fmt(best[1], 1)} µg/m³</span>
+Distancia de la máxima: ${fmt(best[0], 0)} m a favor del viento
+Concentración a 1 km: ${fmt(c1k, 1)} µg/m³
+
+Pruebe: aumente H (chimenea más alta) o cambie la estabilidad a F (noche estable).`;
+  drawChart($('c34'), xs, [{ data: cs, color: '#7fd1a8' }],
+    { xlabel: 'Distancia a favor del viento x [m]', ylabel: 'C [µg/m³]', marker: best });
+  plotted34 = true;
+}
+
+/* ---------- 4.1 Juego de separación ---------- */
+const items = [
+  ['🧴 Botella PET limpia', 'blanco', 'Plástico limpio y seco: aprovechable.'],
+  ['🍌 Cáscara de banano', 'verde', 'Residuo orgánico: va a la caneca verde para compostaje.'],
+  ['🧻 Servilleta usada', 'negro', 'Papel contaminado: no aprovechable.'],
+  ['🥫 Lata de aluminio', 'blanco', 'Metal aprovechable (enjuagada).'],
+  ['🔋 Pilas usadas', 'respel', 'Residuo peligroso / posconsumo: punto de recolección de pilas.'],
+  ['☕ Borra de café', 'verde', 'Orgánico excelente para compost.'],
+  ['📦 Caja de cartón limpia', 'blanco', 'Cartón seco y limpio: aprovechable.'],
+  ['🍟 Empaque metalizado de papas', 'negro', 'Empaque metalizado: no aprovechable en la mayoría de cadenas.'],
+  ['🫙 Frasco de vidrio', 'blanco', 'Vidrio limpio: aprovechable.'],
+  ['💊 Medicamentos vencidos', 'respel', 'Deben ir a los puntos posconsumo de medicamentos.'],
+  ['🌿 Poda de jardín', 'verde', 'Material vegetal: orgánico aprovechable.'],
+  ['🧻 Papel higiénico', 'negro', 'No aprovechable.'],
+  ['💡 Bombillo fluorescente', 'respel', 'Contiene mercurio: posconsumo de luminarias.'],
+  ['📰 Periódico seco', 'blanco', 'Papel seco: aprovechable.'],
+  ['🍕 Caja de pizza con grasa', 'negro', 'Cartón contaminado con grasa: no aprovechable.']
+];
+let deck = [], cur = null, score = 0, total = 0;
+const names = { blanco: 'BLANCA', negro: 'NEGRA', verde: 'VERDE', respel: 'POSCONSUMO / RESPEL' };
+function startGame() {
+  deck = [...items].sort(() => Math.random() - 0.5); score = 0; total = 0;
+  $('gFeedback').textContent = 'Seleccione la caneca correcta.'; nextItem();
+}
+function nextItem() {
+  cur = deck.pop();
+  if (!cur) {
+    $('gItem').textContent = '🎉 ¡Terminado!';
+    $('gFeedback').innerHTML = `Resultado final: <span class="${score / total >= 0.8 ? 'ok' : 'warn'}">${score}/${total}</span>. ${score / total >= 0.8 ? '¡Excelente separación en la fuente!' : 'Repase el código de colores y vuelva a intentarlo.'}`;
+    return;
+  }
+  $('gItem').textContent = cur[0];
+  $('gScore').textContent = `Aciertos: ${score} / ${total} · Quedan ${deck.length + 1}`;
+}
+function sortItem(bin) {
+  if (!cur) return;
+  total++;
+  if (bin === cur[1]) { score++; $('gFeedback').innerHTML = `<span class="ok">✔ Correcto.</span> ${cur[2]}`; }
+  else $('gFeedback').innerHTML = `<span class="bad">✘ Incorrecto.</span> Va en la caneca ${names[cur[1]]}. ${cur[2]}`;
+  nextItem();
+  $('gScore').textContent = `Aciertos: ${score} / ${total}` + (cur ? ` · Quedan ${deck.length + 1}` : '');
+}
+startGame();
+
+/* ---------- 4.2 Proyección ---------- */
+let plotted42 = false;
+function ex42() {
+  const P0 = v('r2P'), r = v('r2r') / 100, ppc0 = v('r2ppc'), k = v('r2k') / 100, n = Math.max(1, Math.round(v('r2n'))), cap = Math.max(v('r2cap'), 0.1);
+  const xs = [], G = [];
+  let lines = 'Año  Población    PPC[kg/hab·d]  Generación[t/d]\n';
+  for (let t = 0; t <= n; t++) {
+    const P = P0 * Math.pow(1 + r, t), ppc = ppc0 * Math.pow(1 + k, t), g = P * ppc / 1000;
+    xs.push(t); G.push(g);
+    lines += `${String(t).padStart(3)}  ${fmt(P,0).padStart(10)}   ${fmt(ppc,3).padStart(10)}     ${fmt(g,2).padStart(10)}\n`;
+  }
+  const gF = G[G.length - 1];
+  lines += `\nIncremento en ${n} años: <span class="warn">${fmt((gF / G[0] - 1) * 100, 1)} %</span>
+Viajes de recolección diarios hoy: ${Math.ceil(G[0] / cap)}  →  en el año ${n}: ${Math.ceil(gF / cap)}
+Generación anual en el año ${n}: ${fmt(gF * 365, 0)} t/año`;
+  $('r42').innerHTML = lines;
+  drawChart($('c42'), xs, [{ data: G, color: '#e9c46a' }], { xlabel: 'Año de proyección', ylabel: 'Generación [t/día]' });
+  plotted42 = true;
+}
+
+/* ---------- 4.3 C/N ---------- */
+function ex43() {
+  let C = 0, N = 0, dry = 0, wet = 0;
+  for (let i = 1; i <= 3; i++) {
+    const m = v('c' + i + 'm'), w = v('c' + i + 'w') / 100, d = m * (1 - w);
+    C += d * v('c' + i + 'c'); N += d * v('c' + i + 'n'); dry += d; wet += m;
+  }
+  if (N === 0) { $('r43').innerHTML = '<span class="bad">Ingrese al menos un material con nitrógeno.</span>'; return; }
+  const cn = C / N, hum = (1 - dry / wet) * 100;
+  let msg, cls;
+  if (cn < 25) { cls = 'warn'; msg = 'Relación baja: exceso de nitrógeno → olores amoniacales. Agregue material rico en carbono (hojarasca, aserrín, cartón).'; }
+  else if (cn <= 35) { cls = 'ok'; msg = 'Relación adecuada para un compostaje eficiente.'; }
+  else { cls = 'warn'; msg = 'Relación alta: el proceso será lento. Agregue material rico en nitrógeno (restos de cocina, estiércol).'; }
+  $('r43').innerHTML =
+`Masa seca total: ${fmt(dry)} kg  ·  Humedad de la mezcla: ${fmt(hum,1)} %
+(C/N)_mezcla = <span class="${cls}">${fmt(cn,1)}</span>
+
+${msg}
+${hum < 40 ? '<span class="warn">Humedad baja (&lt;40 %): humedecer la pila.</span>' : hum > 65 ? '<span class="warn">Humedad alta (&gt;65 %): riesgo de anaerobiosis, agregar material seco.</span>' : '<span class="ok">Humedad dentro del rango recomendado (40–65 %).</span>'}`;
+}
+
+/* ---------- 4.4 Relleno ---------- */
+function ex44() {
+  const G = v('l1G'), a = v('l1a') / 100, n = v('l1n'), d = Math.max(v('l1d'), 0.01), f = v('l1f') / 100, h = Math.max(v('l1h'), 0.1), x = v('l1x') / 100;
+  const M = G * (1 - a) * 365 * n;
+  const V = M / d * (1 + f);
+  const A = V / h * (1 + x);
+  const M0 = G * 365 * n, A0 = M0 / d * (1 + f) / h * (1 + x);
+  $('r44').innerHTML =
+`Masa a disponer:  M = ${fmt(G)} × (1 − ${fmt(a)}) × 365 × ${fmt(n,0)} = ${fmt(M,0)} t
+Volumen:          V = ${fmt(M,0)} / ${fmt(d)} × (1 + ${fmt(f)}) = ${fmt(V,0)} m³
+Área requerida:   A ≈ ${fmt(V,0)} / ${fmt(h,1)} × (1 + ${fmt(x)}) = ${fmt(A,0)} m²  (<span class="warn">${fmt(A/10000)} ha</span>)
+
+Sin aprovechamiento se necesitarían ${fmt(A0/10000)} ha.
+<span class="ok">El aprovechamiento ahorra ≈ ${fmt((A0 - A)/10000)} ha de terreno.</span>`;
+}
+
+/* Redibujar gráficas al cambiar tamaño */
+window.addEventListener('resize', () => { if (plotted34) ex34(); if (plotted42) ex42(); });
 </script>
 </body>
 </html>
